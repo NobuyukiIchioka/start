@@ -1,0 +1,98 @@
+.message-main {
+  padding: 54px 0 100px;
+}
+
+.message-intro {
+  text-align: center;
+}
+
+.message-intro__title {
+  color: var(--color-brand);
+  font-size: 40px;
+  letter-spacing: 0.05em;
+  line-height: 1.5;
+}
+
+.message-intro__lead {
+  margin-top: 24px;
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+}
+
+.message-body {
+  width: min(100%, 790px);
+  margin: 42px auto 0;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  line-height: 1.6;
+}
+
+.message-body::after {
+  display: block;
+  clear: both;
+  content: "";
+}
+
+.message-body__portrait {
+  float: left;
+  width: 100px;
+  height: 100px;
+  margin: 0 25px 12px 0;
+  background: url("../img/PC_メッセージ.png") -323px -549px / 1440px auto no-repeat;
+  border-radius: 50%;
+}
+
+.message-body a {
+  color: #349bf4;
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+.message-office {
+  width: 100%;
+  height: 400px;
+  margin-top: 80px;
+  background: url("../img/PC_メッセージ.png") -165px -809px / 1440px auto no-repeat;
+}
+
+@media (max-width: 767px) {
+  .message-main {
+    padding: 42px 0 64px;
+  }
+
+  .message-intro__title {
+    font-size: 26px;
+    line-height: 1.55;
+  }
+
+  .message-intro__lead {
+    margin-top: 22px;
+    font-size: 16px;
+    line-height: 1.7;
+  }
+
+  .message-body {
+    margin-top: 32px;
+    font-size: 15px;
+    line-height: 1.75;
+  }
+
+  .message-body__portrait {
+    width: 100px;
+    height: 100px;
+    margin: 0 18px 8px 0;
+    background-image: url("../img/SP_メッセージ.png");
+    background-position: -20px -405px;
+    background-size: 375px auto;
+  }
+
+  .message-office {
+    height: 260px;
+    margin-top: 48px;
+    background-image: url("../img/SP_メッセージ.png");
+    background-position: -20px -795px;
+    background-size: 375px auto;
+  }
+}
