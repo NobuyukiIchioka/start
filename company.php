@@ -11,7 +11,7 @@ $currentPage = 'company';
     <link rel="icon" href="./asset/img/favicon.png" type="image/png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Roboto:wght@700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Roboto:wght@500;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="./asset/css/base.css" />
     <link rel="stylesheet" href="./asset/css/module.css" />
     <link rel="stylesheet" href="./asset/css/company.css" />

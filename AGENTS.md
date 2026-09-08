@@ -10,6 +10,7 @@
   - `index.php`：ホーム
   - `message.php`：メッセージ
   - `company.php`：会社概要
+- 内部確認用として `style-guide.php` を置き、共通スタイルをブラウザで確認する
 - 実装にはPHP、HTML、CSS、JavaScriptを使用する
 - CSSフレームワークやJavaScriptライブラリは使用しない
 - JavaScriptはVanilla JavaScriptで記述する
@@ -29,13 +30,15 @@ start/
 ├── index.php
 ├── message.php
 ├── company.php
+├── style-guide.php
 └── asset/
     ├── css/
     │   ├── base.css
     │   ├── module.css
     │   ├── top.css
     │   ├── message.css
-    │   └── company.css
+    │   ├── company.css
+    │   └── style-guide.css
     ├── img/
     │   └── design/
     ├── js/
@@ -76,13 +79,15 @@ $currentPage = 'home';
   - ヘッダー、グローバルナビ、SPメニュー
   - フッター
   - 下層ページの共通ヒーロー
-  - 共通ニュース一覧
+  - 共通ニュース一覧、コンテンツカード
 - `top.css`
-  - トップページ専用のメインビジュアル、ニュース配置、サービスセクション、サービスカード
+  - トップページ専用のメインビジュアル、ニュース配置、サービスセクション
 - `message.css`
   - メッセージページ専用の本文、代表写真、会議室画像
 - `company.css`
   - 会社概要表、地図、会社概要ページ内のニュース配置
+- `style-guide.css`
+  - 内部確認用スタイルガイドページだけの表示調整
 
 共通スタイルをページCSSへ重複させない。反対に、1ページでしか使わないスタイルを `base.css` や `module.css` へ移さない。
 
@@ -136,8 +141,9 @@ $currentPage = 'home';
 
 ## 現在確定している内容
 
-- サービスカードとニュース項目は、リンクを想定したホバー表現を持つ
-- リンク先は未確定のため、現在は `href="#"` の仮リンク
+- サービスカードは現在、リンクなしで表示する
+- ニュース項目はリンクを想定したホバー表現を持つ
+- ニュースのリンク先は未確定のため、現在は `href="#"` の仮リンク
 - 人材紹介業の説明は、人材紹介サービスの内容にする
 - トップページの大きな背景文字 `SERVICE` は、サービスセクションの疑似要素として配置する
 - Google Mapは後から実際の埋め込みと外部リンクに差し替える。正確なURLが届くまではプレースホルダーのままにする
