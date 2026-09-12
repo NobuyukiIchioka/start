@@ -1,7 +1,10 @@
 .top-hero {
   display: grid;
-  height: 600px;
-  background: url("../img/mv-bg-pc.png") center / cover no-repeat;
+  width: 100%;
+  height: auto;
+  /* Figma画像ルール：元画像の比率を保ち、画面幅に合わせて伸縮する */
+  aspect-ratio: 1440 / 600;
+  background: url("../img/mv-bg-pc.png") center / 100% auto no-repeat;
   place-items: center;
 }
 
@@ -23,6 +26,7 @@
 }
 
 .top-hero__copy {
+  display: block;
   margin-top: 10px;
   color: var(--color-white);
   font-family: var(--font-family-base);
@@ -37,7 +41,7 @@
 }
 
 .news-section {
-  padding: 66px 0 74px;
+  padding: 60px 0 90px;
 }
 
 .news-section__inner {
@@ -60,15 +64,21 @@
 
 .service-section {
   position: relative;
-  overflow: hidden;
-  padding: 74px 0 100px;
+  overflow-x: clip;
+  overflow-y: visible;
+  padding: 0 0 100px;
   background: var(--color-background);
 }
 
-.service-section::before {
+.service-section__header {
+  position: relative;
+}
+
+.service-section__header::before {
   position: absolute;
-  top: 30px;
-  right: 75px;
+  z-index: -1;
+  top: -53px;
+  right: -15px;
   color: var(--color-background-muted);
   content: "SERVICE";
   font-family: var(--font-family-alphanumeric);
@@ -88,10 +98,13 @@
 
 @media (max-width: 767px) {
   .top-hero {
-    height: 460px;
+    width: 100%;
+    height: auto;
+    /* SP画像の縦横比を保ち、横幅に合わせて高さを自動調整する */
+    aspect-ratio: 375 / 460;
     background-image: url("../img/mv-bg-sp.png");
     background-position: center;
-    background-size: cover;
+    background-size: 100% auto;
   }
 
   .top-hero__title {
@@ -119,9 +132,9 @@
     padding: 42px 0 64px;
   }
 
-  .service-section::before {
-    top: 55px;
-    right: -9px;
+  .service-section__header::before {
+    top: 13px;
+    right: -29px;
     font-size: 72px;
   }
 

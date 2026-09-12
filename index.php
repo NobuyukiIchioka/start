@@ -23,8 +23,9 @@ $currentPage = 'home';
     <main>
       <section class="top-hero">
         <div class="top-hero__content">
-          <h1 class="top-hero__title">START</h1>
-          <p class="top-hero__copy">仕事に最高のスタートを。</p>
+          <h1 class="top-hero__title">START
+            <span class="top-hero__copy">仕事に最高のスタートを。</span>
+          </h1>
         </div>
       </section>
 
@@ -37,7 +38,9 @@ $currentPage = 'home';
 
       <section class="service-section">
         <div class="service-section__inner container">
-          <h2 class="section-title">サービス</h2>
+          <div class="service-section__header">
+            <h2 class="section-title">サービス</h2>
+          </div>
           <ul class="service-list content-card-list">
             <li class="content-card">
               <picture class="content-card__icon">

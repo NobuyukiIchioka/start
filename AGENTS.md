@@ -145,7 +145,7 @@ $currentPage = 'home';
 - ニュース項目はリンクを想定したホバー表現を持つ
 - ニュースのリンク先は未確定のため、現在は `href="#"` の仮リンク
 - 人材紹介業の説明は、人材紹介サービスの内容にする
-- トップページの大きな背景文字 `SERVICE` は、サービスセクションの疑似要素として配置する
+- トップページの大きな背景文字 `SERVICE` は、`.service-section__header::before` に配置する（セクション直下の疑似要素へ戻さない）
 - Google Mapは後から実際の埋め込みと外部リンクに差し替える。正確なURLが届くまではプレースホルダーのままにする
 
 ## 作業時の確認
@@ -169,3 +169,34 @@ PHPのincludeはHTMLファイルの直接表示では動作しない。MAMPな�
 3. 現在のファイル構成とGitの変更状態を確認する
 4. デザイン資料と既存実装を照合する
 5. 依頼範囲だけを変更し、PC・SPの両方を確認する
+
+## 引き継ぎメモ（2026-09-12）
+
+### Figmaの参照先と優先するルール
+
+- PCトップ：<https://www.figma.com/design/UQfRtyd460dqJuzbAqwq2g/level-start?node-id=28-245>
+- SPトップ：<https://www.figma.com/design/UQfRtyd460dqJuzbAqwq2g/level-start?node-id=28-153>
+- スタイルガイド：<https://www.figma.com/design/UQfRtyd460dqJuzbAqwq2g/level-start?node-id=44-187>
+- 実装前にページのデザインだけでなく、Figmaのスタイルガイドも確認する。ローカルの `style-guide.php` は内部確認用であり、Figma側のルールの代わりにはしない。
+- Figmaの画像ルールは `width: 100%; height: auto;`（元画像の比率保持）。メインビジュアルはPC・SPとも画面幅100%、左右余白なし。固定高さや `cover` によるトリミングへ戻さない。
+- 保存済みの完成見本画像はFigma更新前の可能性がある。ユーザーの最新指示と更新済みFigmaを優先し、数値を推測で確定しない。
+
+### 現在の実装
+
+- `index.php` のメイン見出しは `h1.top-hero__title` 内に `span.top-hero__copy` を置く構造。コピーには `display: block` と上余白10pxを指定し、STARTの下へ改行する。ユーザーが表示確認済み。
+- メインビジュアルは背景画像の実装を維持し、`width: 100%`、`height: auto`、`background-size: 100% auto` と `aspect-ratio` を使用。元画像はPCが1440×600px、SPが375×460px。画像を差し替える場合は比率も確認する。
+- PCグローバルナビの間隔は `module.css` の `.global-nav__list` で30px。文字はNoto Sans JP、16px、太さ700、行高16px、字間0.8px。通常色は #151515、現在ページ・ホバー時は #DD1B57。
+- PCの `.news-section` は `padding: 60px 0 90px`、`.service-section` は `padding: 0 0 100px`。ニュース下とサービス上に余白を重複させない。
+- 背景文字用に `.service-section__header` を追加し、`position: relative` を指定。`::before` はPCで `top: -53px`、`right: -15px`、文字サイズ16.8rem。
+- 背景文字の `z-index: -1` と、親 `.service-section__inner` の `position: relative; z-index: 1` を組み合わせて見出し・カードの背面に置いている。
+- `.service-section` は `overflow-x: clip; overflow-y: visible`。上にはみ出す背景文字を表示し、左右のはみ出しだけ切る。`overflow: hidden` へ戻すと文字上部が切れる。
+- SPも `.service-section__header::before` に指定を統一済み。現在値は `top: 13px`、`right: -29px`、文字サイズ72px。旧配置を新しい基準へ換算した値であり、Figmaとの最終一致は未確認。
+- SP用CSSは独立ファイルではなく、各CSSの `@media (max-width: 767px)` 内にある。共通パーツは `module.css`、トップ固有の配置は `top.css`、共通変数は `base.css`。
+
+### 再開時の未確認・未反映事項
+
+- 最新の全体表示について、PC・SP・767/768px境界の一括検証は未実施。直近のoverflow修正後の文字の見切れ、SP背景文字の位置、メニュー操作もブラウザで確認する。コードの差分確認だけで表示検証済みとしない。
+- SPのニュース見出しから日付まで、Figmaで23pxの間隔が示された。現在はニュース一覧の `margin-top: 14px` とリンクの上padding15pxがあり、ボックス間では29pxとなる。8pxへの変更案は説明のみで未反映。Figmaの測定対象と行高を確認してから調整する。
+- PCでもニュース本文の位置には一覧の `margin-top: -8px` とリンクの上padding15pxが加わる。セクションの上padding60pxを、そのまま本文までの距離と解釈しない。
+- Figmaの人材紹介業の説明文はPC・SPとも「Webサイト制作やリニューアルに対応できる、Web制作人材の紹介を行っています。」に統一済みと確認した。`index.php` には以前の「求職者と企業をつなぎ、理想の仕事探しを支援する人材紹介サービスを運営しています。」が残っており、最新文言は未反映。
+- この時点の実装変更と引き継ぎメモは、ユーザーの依頼でまとめてローカルコミットする。pushは別途行う。
