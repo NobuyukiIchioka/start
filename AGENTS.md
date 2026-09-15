@@ -46,7 +46,8 @@ start/
     └── parts/
         ├── header.php
         ├── footer.php
-        └── news-list.php
+        ├── news-list.php
+        └── study.php
 ```
 
 ページ数が3ページだけなので、各PHPファイルはプロジェクト直下に置く。ページごとのサブディレクトリは、明確な必要性が生じるまで追加しない。
@@ -66,6 +67,12 @@ $currentPage = 'home';
 ```
 
 使用する値は `home`、`message`、`company`。ヘッダーでは、この値に対応するリンクだけに `aria-current="page"` を付け、現在ページをブランドカラーで表示する。
+
+### 学習用ファイル
+
+- `asset/parts/study.php` は、PHPのinclude方法などを比較・検証するためにユーザーが自由に編集する学習用ファイル
+- 本番サイトの共通パーツではないため、明示的な依頼がない限り、ページからincludeしない
+- 明示的な依頼がない限り、Codexの変更・リファクタリング・動作確認の対象に含めない
 
 ## CSSの役割
 
