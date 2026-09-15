@@ -22,24 +22,34 @@ $currentPage = 'message';
 
     <main>
       <section class="page-hero page-hero--message">
-        <h1 class="visually-hidden">メッセージ</h1>
+        <h1 class="page-hero__title">メッセージ</h1>
       </section>
 
       <section class="message-main">
         <div class="container">
           <div class="message-intro">
-            <h2 class="message-intro__title">「仕事」をきっかけに<br />人生の新しいスタートを！</h2>
+            <h2 class="message-intro__title">「仕事」をきっかけに<br />人生の新しい一歩を！</h2>
             <p class="message-intro__lead">大事なお仕事探しを応援させてください</p>
           </div>
 
           <div class="message-body">
-            <div class="message-body__portrait" role="img" aria-label="代表取締役社長 ショーン・デイビット・ジュニア"></div>
-            <p>はじめまして。代表取締役社長のショーン・デイビット・ジュニアです。</p>
-            <p>私はそこそこ幸せです。それは仕事が楽しいからです。もちろん仕事イコール人生ではありません。でも仕事は人生の大事な基盤のように思っています。</p>
-            <p>株式会社STARTは、みなさんが仕事をきっかけに理想の人生を実現する手助けをしています。幸せにつながるお仕事紹介サービス<a class="js-placeholder-link" href="#">『スタート』</a>や、共通の目標を目指す仲間が見つかる人材紹介SNS<a class="js-placeholder-link" href="#">『ゴール』</a>を運営しています。また、Webデザインの基礎スキルを身につけられるスクール<a class="js-placeholder-link" href="#">『Webの学校』</a>も随時開講しています。</p>
+            <figure class="message-profile">
+              <img class="message-profile__image" src="./asset/img/ceo.png" alt="代表取締役社長 鈴木 博之" width="260" height="260" />
+              <figcaption class="message-profile__caption">
+                <span class="message-profile__position">代表取締役社長</span>
+                <span class="message-profile__name">鈴木 博之</span>
+              </figcaption>
+            </figure>
+
+            <div class="message-body__content">
+              <p>はじめまして。代表取締役社長の鈴木 博之です。</p>
+              <p>私は、仕事を楽しむことが人生の豊かさにつながると考えています。もちろん、仕事が人生のすべてではありません。しかし、多くの時間を費やす仕事は、人生を形づくる大切な要素のひとつです。</p>
+              <p>株式会社STARTでは、仕事をきっかけに、一人ひとりが理想とする人生の実現を目指せるようサポートしています。</p>
+              <p>幸せにつながる仕事との出会いを支援するお仕事紹介サービス<a class="js-placeholder-link" href="#">『スタート』</a>、共通の目標を持つ仲間とつながる人材紹介SNS<a class="js-placeholder-link" href="#">『ゴール』</a>を運営しています。また、Webデザインの基礎スキルを学べるスクール<a class="js-placeholder-link" href="#">『Webの学校』</a>も開講しています。</p>
+            </div>
           </div>
 
-          <div class="message-office" role="img" aria-label="株式会社STARTの会議室"></div>
+          <img class="message-office" src="./asset/img/office.png" alt="株式会社STARTの会議室" width="2220" height="800" />
         </div>
       </section>
     </main>

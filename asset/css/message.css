@@ -1,5 +1,17 @@
+.page-hero--message {
+  display: grid;
+  background-image: url("../img/mv-bg-pc.png");
+  background-position: center;
+  background-size: cover;
+  place-items: center;
+}
+
+.page-hero--message .page-hero__title {
+  text-shadow: 0 3px 3px rgb(195 45 77 / 20%);
+}
+
 .message-main {
-  padding: 54px 0 100px;
+  padding: 75px 0 100px;
 }
 
 .message-intro {
@@ -8,43 +20,63 @@
 
 .message-intro__title {
   color: var(--color-brand);
-  font-size: 40px;
+  font-size: 4rem;
+  font-weight: 700;
   letter-spacing: 0.05em;
   line-height: 1.5;
 }
 
 .message-intro__lead {
-  margin-top: 24px;
-  font-size: 18px;
-  font-weight: 500;
-  letter-spacing: 0.05em;
-}
-
-.message-body {
-  width: min(100%, 790px);
-  margin: 42px auto 0;
-  font-size: 16px;
+  margin-top: 0;
+  color: var(--color-text);
+  font-size: 1.8rem;
   font-weight: 500;
   letter-spacing: 0.05em;
   line-height: 1.6;
 }
 
-.message-body::after {
-  display: block;
-  clear: both;
-  content: "";
+.message-body {
+  display: grid;
+  grid-template-columns: 130px minmax(0, 770px);
+  gap: 60px;
+  width: min(100%, 960px);
+  margin: 40px auto 0;
 }
 
-.message-body__portrait {
-  float: left;
-  width: 100px;
-  height: 100px;
-  margin: 0 25px 12px 0;
-  background: url("../img/PC_メッセージ.png") -323px -549px / 1440px auto no-repeat;
+.message-profile {
+  margin-top: 10px;
+  text-align: center;
+}
+
+.message-profile__image {
+  width: 130px;
+  height: 130px;
+  object-fit: cover;
   border-radius: 50%;
 }
 
-.message-body a {
+.message-profile__caption {
+  margin-top: 10px;
+  color: var(--color-menu);
+  font-size: 1.2rem;
+  font-weight: 400;
+  line-height: 1.3;
+}
+
+.message-profile__position,
+.message-profile__name {
+  display: block;
+}
+
+.message-body__content {
+  color: var(--color-text);
+  font-size: 1.6rem;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  line-height: 1.6;
+}
+
+.message-body__content a {
   color: #349bf4;
   text-decoration: underline;
   text-underline-offset: 0.15em;
@@ -52,47 +84,67 @@
 
 .message-office {
   width: 100%;
-  height: 400px;
+  height: auto;
   margin-top: 80px;
-  background: url("../img/PC_メッセージ.png") -165px -809px / 1440px auto no-repeat;
+  object-fit: cover;
 }
 
 @media (max-width: 767px) {
+  .page-hero--message {
+    background-image: url("../img/mv-bg-sp.png");
+  }
+
   .message-main {
-    padding: 42px 0 64px;
+    padding: 40px 0 60px;
   }
 
   .message-intro__title {
-    font-size: 26px;
-    line-height: 1.55;
+    font-size: 2.4rem;
+    line-height: 1.5;
   }
 
   .message-intro__lead {
-    margin-top: 22px;
-    font-size: 16px;
-    line-height: 1.7;
+    margin-top: 15px;
+    font-size: 1.5rem;
+    line-height: 1.6;
   }
 
   .message-body {
-    margin-top: 32px;
-    font-size: 15px;
-    line-height: 1.75;
+    display: block;
+    width: 100%;
+    margin-top: 30px;
   }
 
-  .message-body__portrait {
+  .message-body::after {
+    display: block;
+    clear: both;
+    content: "";
+  }
+
+  .message-profile {
+    float: left;
+    width: 100px;
+    margin: 3px 15px 0 0;
+  }
+
+  .message-profile__image {
     width: 100px;
     height: 100px;
-    margin: 0 18px 8px 0;
-    background-image: url("../img/SP_メッセージ.png");
-    background-position: -20px -405px;
-    background-size: 375px auto;
+  }
+
+  .message-profile__caption {
+    display: none;
+  }
+
+  .message-body__content {
+    font-size: 1.5rem;
+    font-weight: 500;
+    line-height: 1.6;
   }
 
   .message-office {
     height: 260px;
-    margin-top: 48px;
-    background-image: url("../img/SP_メッセージ.png");
-    background-position: -20px -795px;
-    background-size: 375px auto;
+    margin-top: 50px;
+    object-position: center;
   }
 }
