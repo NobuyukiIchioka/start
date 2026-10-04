@@ -1,9 +1,145 @@
+/*
+ * START共通のスタイルガイドと共通パーツ
+ * 1. サイト固有の変数（色・書体・サイズ・共通レイアウト）
+ * 2. 共通テキスト・ページ初期値
+ * 3. コンテナ・ヘッダー・フッター・ヒーロー・ニュース・カード
+ * 読み込み順：base.css → module.css → 各ページのCSS
+ */
+
+/*** 1. Style guide（START共通の色・文字・レイアウト設定） ***/
+:root {
+  /* 共通レイアウト */
+  --content-width: 1110px;
+  --header-height: 90px;
+  --side-padding: 20px;
+
+  /* COLOR：スタイルガイドと同じ項目・順序 */
+  --color-brand: #dd1b57;        /* ブランドカラー */
+  --color-text: #333333;         /* 基本文字 */
+  --color-menu: #151515;         /* メニュー色 */
+  --color-background: #ffffff;  /* 背景色 */
+  --color-line: #e8e8e8;         /* 下線 */
+
+  /* Font family（書体） */
+  --font-family-base: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif;
+  --font-family-alphanumeric: "Roboto", Arial, sans-serif;
+
+  /* Base text（本文・小さな文字のサイズ） */
+  --font-size-base: 1.5rem;
+  --font-size-small: 1.4rem;
+
+  /*
+   * PCテキスト：スタイルガイドの用途別にまとめる。
+   * 各用途は「文字サイズ → 字間 → 行高」の順。
+   * 単位の目安：標準文字サイズ16px時は1rem = 10px。字間5%は0.05em。
+   * 書体はbody、太さ・色は後述のh1〜h3やナビのクラスで指定する。
+   */
+
+  /* H2 */
+  --font-size-h2: 4rem;
+  --letter-spacing-h2: 0.05em;
+  --line-height-h2: 1;
+
+  /* H3 */
+  --font-size-h3: 1.8rem;
+  --letter-spacing-h3: 0;
+  --line-height-h3: 1.15;
+
+  /* ページタイトル（H1） */
+  --font-size-page-title: 4rem;
+  --letter-spacing-page-title: 0.1em;
+  --line-height-page-title: 1;
+
+  /* ナビ */
+  --font-size-nav: 1.6rem;
+  --letter-spacing-nav: 0.05em;
+  --line-height-nav: 1;
+}
+
+@media (max-width: 767px) {
+  :root {
+    --header-height: 60px;
+
+    /* SPテキスト：PCと異なる値だけを変更する。字間・行高は共通。 */
+
+    /* H2 */
+    --font-size-h2: 3.2rem;
+
+    /* H3 */
+    --font-size-h3: 1.6rem;
+
+    /* ページタイトル（H1） */
+    --font-size-page-title: 2.8rem;
+
+    /* ハンバーガーメニュー：PCナビと同じ変数を使用。白色は.mobile-menu__linkで指定。 */
+  }
+}
+
+/*** 2. Shared typography（全ページ共通の文字・ページ初期設定） ***/
+html {
+  /* STARTのrem指定の基準。ブラウザの標準文字サイズ16pxの場合は1rem = 10px */
+  font-size: 62.5%;
+  scroll-behavior: smooth;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100dvh;
+  color: var(--color-text);
+  background: var(--color-background);
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-base);
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+  line-break: strict;
+}
+
+h1 {
+  color: #fff;
+  font-size: var(--font-size-page-title);
+  font-weight: 700;
+  letter-spacing: var(--letter-spacing-page-title);
+  line-height: var(--line-height-page-title);
+  text-align: center;
+}
+
+h2 {
+  color: var(--color-brand);
+  font-size: var(--font-size-h2);
+  font-weight: 700;
+  letter-spacing: var(--letter-spacing-h2);
+  line-height: var(--line-height-h2);
+}
+
+h3 {
+  color: var(--color-menu);
+  font-size: var(--font-size-h3);
+  font-weight: 700;
+  letter-spacing: var(--letter-spacing-h3);
+  line-height: var(--line-height-h3);
+}
+
+time,
+[lang="en"] {
+  font-family: var(--font-family-alphanumeric);
+}
+
+small {
+  font-size: var(--font-size-small);
+}
+
+/*** 3. Shared components（共通パーツ） ***/
+/* Container（共通のコンテンツ幅・左右余白） */
 .container {
   width: min(calc(100% - (var(--side-padding) * 2)), var(--content-width));
   margin-inline: auto;
 }
 
-/* Header */
+/* Header（ヘッダー・ナビゲーション） */
+body.is-menu-open {
+  overflow: hidden;
+}
+
 .site-header {
   position: relative;
   z-index: 20;
@@ -50,7 +186,7 @@
 }
 
 .global-nav__link {
-  color: var(--color-nav);
+  color: var(--color-menu);
   font-size: var(--font-size-nav);
   letter-spacing: var(--letter-spacing-nav);
   line-height: var(--line-height-nav);
@@ -67,11 +203,11 @@
   display: none;
 }
 
-/* Footer */
+/* Footer（フッター） */
 .site-footer {
   min-height: 159px;
   padding: 50px 20px 28px;
-  color: var(--color-white);
+  color: #fff;
   background: var(--color-brand);
 }
 
@@ -105,23 +241,29 @@
   line-height: 1.15;
 }
 
-/* Shared lower-page hero */
+/* Page hero（下層ページタイトル：背景画像＋見出し） */
 .page-hero {
+  display: grid;
+  width: 100%;
   height: 190px;
+  padding-inline: 20px;
+  background-image: url("../img/mv-bg-pc.png");
   background-repeat: no-repeat;
-  background-position: center -90px;
-  background-size: 1440px auto;
+  background-position: center;
+  background-size: cover;
+  place-items: center;
 }
 
-.page-hero--message {
-  background-image: url("../img/PC_メッセージ.png");
+.page-hero__title {
+  color: #fff;
+  font-size: var(--font-size-page-title);
+  font-weight: 700;
+  letter-spacing: var(--letter-spacing-page-title);
+  line-height: var(--line-height-page-title);
+  text-align: center;
 }
 
-.page-hero--company {
-  background-image: url("../img/PC_会社概要.png");
-}
-
-/* Shared news list */
+/* News list（ニュース一覧：日付＋本文） */
 .news-list__item {
   border-bottom: 1px solid var(--color-line);
 }
@@ -153,7 +295,7 @@
   line-height: 27px;
 }
 
-/* Shared content cards */
+/* Content cards（コンテンツカード：アイコン＋見出し＋説明文） */
 .content-card-list {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -201,6 +343,7 @@
   line-height: 1.7;
 }
 
+/* Responsive（767px以下：共通パーツのスマートフォン向け調整） */
 @media (max-width: 767px) {
   .site-header {
     height: var(--header-height);
@@ -230,7 +373,7 @@
   .menu-button__line {
     width: 30px;
     height: 2px;
-    background: var(--color-white);
+    background: var(--color-background);
   }
 
   .mobile-menu-layer {
@@ -259,7 +402,7 @@
     width: 200px;
     min-height: 100dvh;
     padding: 92px 0 40px;
-    color: var(--color-mobile-menu);
+    color: #fff;
     background: var(--color-brand);
     transform: translateX(100%);
     transition: transform 0.3s ease;
@@ -284,7 +427,7 @@
     left: 0;
     width: 30px;
     height: 2px;
-    background: var(--color-white);
+    background: var(--color-background);
     content: "";
   }
 
@@ -304,7 +447,7 @@
 
   .mobile-menu__link {
     display: block;
-    color: var(--color-mobile-menu);
+    color: #fff;
     font-size: var(--font-size-nav);
     font-weight: 700;
     letter-spacing: var(--letter-spacing-nav);
@@ -335,16 +478,7 @@
 
   .page-hero {
     height: 160px;
-    background-position: center -60px;
-    background-size: 375px auto;
-  }
-
-  .page-hero--message {
-    background-image: url("../img/SP_メッセージ.png");
-  }
-
-  .page-hero--company {
-    background-image: url("../img/SP_会社概要.png");
+    background-image: url("../img/mv-bg-sp.png");
   }
 
   .news-list__link {

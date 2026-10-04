@@ -28,7 +28,12 @@ $currentPage = 'message';
       <section class="message-main">
         <div class="container">
           <div class="message-intro">
-            <h2 class="message-intro__title">「仕事」をきっかけに<br />人生の新しい一歩を！</h2>
+            <h2 class="message-intro__title">
+              <img class="message-intro__title-image" src="./asset/img/message-title.png" alt="「仕事」をきっかけに 人生の新しい一歩を！" width="1700" height="240" />
+            </h2>
+            <!-- 画像を使わない場合は、上のh2を以下のテキスト版に置き換える。 -->
+            <!-- <h2 class="message-intro__title">「仕事」をきっかけに<br />人生の新しい一歩を！</h2> -->
+           
             <p class="message-intro__lead">大事なお仕事探しを応援させてください</p>
           </div>
 
@@ -45,7 +50,7 @@ $currentPage = 'message';
               <p>はじめまして。代表取締役社長の鈴木 博之です。</p>
               <p>私は、仕事を楽しむことが人生の豊かさにつながると考えています。もちろん、仕事が人生のすべてではありません。しかし、多くの時間を費やす仕事は、人生を形づくる大切な要素のひとつです。</p>
               <p>株式会社STARTでは、仕事をきっかけに、一人ひとりが理想とする人生の実現を目指せるようサポートしています。</p>
-              <p>幸せにつながる仕事との出会いを支援するお仕事紹介サービス<a class="js-placeholder-link" href="#">『スタート』</a>、共通の目標を持つ仲間とつながる人材紹介SNS<a class="js-placeholder-link" href="#">『ゴール』</a>を運営しています。また、Webデザインの基礎スキルを学べるスクール<a class="js-placeholder-link" href="#">『Webの学校』</a>も開講しています。</p>
+              <p>幸せにつながる仕事との出会いを支援するお仕事紹介サービス『スタート』、共通の目標を持つ仲間とつながる人材紹介SNS『ゴール』を運営しています。また、Webデザインの基礎スキルを学べるスクール『Webの学校』も開講しています。</p>
             </div>
           </div>
 

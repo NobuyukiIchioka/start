@@ -23,7 +23,7 @@ $currentPage = $currentPage ?? '';
       <span class="menu-button__line"></span>
       <span class="menu-button__line"></span>
     </button>
-  </div>
+  </div><!-- site-header__inner -->
 </header>
 
 <div class="mobile-menu-layer" data-menu-layer>

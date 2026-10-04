@@ -34,6 +34,7 @@ $currentPage = 'style-guide';
             <li><a href="#responsive">レスポンシブ</a></li>
             <li><a href="#layout">レイアウト</a></li>
             <li><a href="#modules">共通パーツ</a></li>
+            <li><a href="#page-title">下層ページタイトル</a></li>
           </ul>
         </nav>
 
@@ -198,6 +199,17 @@ $currentPage = 'style-guide';
           </ul>
         </section>
       </div>
+
+      <section class="style-guide__page-title-demo" id="page-title">
+        <div class="container">
+          <h2 class="style-guide__section-title">下層ページタイトル</h2>
+          <p class="style-guide__note">共通パーツ：ページタイトル（H1）＋背景画像。実際のページではH1を使用し、この表示例では同じクラスを付けたテキストで確認します。</p>
+          <p class="style-guide__note">幅は画面幅100%、高さはPC：190px／SP：160px。背景画像はcover・中央配置、タイトルは上下左右中央です。767px以下でSPへ切り替わります。</p>
+        </div>
+        <div class="page-hero">
+          <p class="page-hero__title">ページタイトル</p>
+        </div>
+      </section>
     </main>
 
     <?php require __DIR__ . '/asset/parts/footer.php'; ?>

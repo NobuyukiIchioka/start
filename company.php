@@ -22,7 +22,7 @@ $currentPage = 'company';
 
     <main>
       <section class="page-hero page-hero--company">
-        <h1 class="visually-hidden">会社概要</h1>
+        <h1 class="page-hero__title">会社概要</h1>
       </section>
 
       <div class="company-main">

@@ -4,7 +4,7 @@
 
 .style-guide__hero {
   padding: 64px 20px;
-  color: var(--color-white);
+  color: #fff;
   background: var(--color-brand);
   text-align: center;
 }
@@ -15,6 +15,10 @@
 
 .style-guide__inner {
   padding-block: 56px 80px;
+}
+
+.style-guide__page-title-demo {
+  padding-bottom: 56px;
 }
 
 .style-guide__index,
@@ -134,7 +138,7 @@
 }
 
 .style-guide__table thead th {
-  color: var(--color-white);
+  color: #fff;
   background: var(--color-menu);
   text-align: left;
 }
@@ -147,7 +151,7 @@
 .style-guide__viewport-state {
   padding: 20px;
   margin-bottom: 16px;
-  color: var(--color-white);
+  color: #fff;
   background: var(--color-menu);
   border-radius: 4px;
 }

@@ -13,7 +13,7 @@
 }
 
 .top-hero__title {
-  color: var(--color-white);
+  color: #fff;
   font-family: var(--font-family-alphanumeric);
   font-size: 16rem;
   font-style: normal;
@@ -28,7 +28,7 @@
 .top-hero__copy {
   display: block;
   margin-top: 10px;
-  color: var(--color-white);
+  color: #fff;
   font-family: var(--font-family-base);
   font-size: 2.4rem;
   font-style: normal;
@@ -79,7 +79,7 @@
   z-index: -1;
   top: -53px;
   right: -15px;
-  color: var(--color-background-muted);
+  color: #f2f2f2;
   content: "SERVICE";
   font-family: var(--font-family-alphanumeric);
   font-size: 16.8rem;
