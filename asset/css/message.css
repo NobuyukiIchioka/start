@@ -23,7 +23,7 @@
 }
 
 .message-intro__lead {
-  margin-top: 0;
+  margin-top: 20px;
   color: var(--color-text);
   font-size: 1.8rem;
   font-weight: 500;
@@ -98,7 +98,7 @@
   .message-body {
     display: block;
     width: 100%;
-    margin-top: 26px;
+    margin-top: 30px;
   }
 
   /* SPは写真を中央に置き、その下に本文を並べる（回り込みなし）。 */

@@ -27,6 +27,7 @@ $currentPage = 'company';
 
       <div class="company-main">
         <div class="container">
+          <!-- 会社情報：各項目名と内容をdl・dt・ddで対応させる。 -->
           <dl class="company-profile">
             <div class="company-profile__row">
               <dt class="company-profile__term">社名</dt>
@@ -34,11 +35,11 @@ $currentPage = 'company';
             </div>
             <div class="company-profile__row">
               <dt class="company-profile__term">設立</dt>
-              <dd class="company-profile__description">2025.02.10</dd>
+              <dd class="company-profile__description"><time datetime="2025-02-10">2025.02.10</time></dd>
             </div>
             <div class="company-profile__row">
               <dt class="company-profile__term">代表取締役</dt>
-              <dd class="company-profile__description">ショーン・デイビット・ジュニア</dd>
+              <dd class="company-profile__description">鈴木 博之</dd>
             </div>
             <div class="company-profile__row">
               <dt class="company-profile__term">資本金</dt>
@@ -52,7 +53,9 @@ $currentPage = 'company';
 
           <section class="company-map">
             <h2 class="visually-hidden">所在地</h2>
+            <!-- 埋め込みURLが確定したら、この仮表示をGoogle Mapのiframeに差し替える。 -->
             <div class="company-map__placeholder">Google Map</div>
+            <!-- hrefには、確定したGoogle Mapの共有URLを設定する。 -->
             <p class="company-map__link-wrap"><a class="company-map__link js-placeholder-link" href="#">Google mapで見る</a></p>
           </section>
 
