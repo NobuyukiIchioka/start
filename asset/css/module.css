@@ -8,9 +8,8 @@
 
 /*** 1. Style guide（START共通の色・文字・レイアウト設定） ***/
 :root {
-  /* 共通レイアウト */
+  /* 共通レイアウト（コンテンツ幅・左右余白） */
   --content-width: 1110px;
-  --header-height: 90px;
   --side-padding: 20px;
 
   /* COLOR：スタイルガイドと同じ項目・順序 */
@@ -29,11 +28,16 @@
   --font-size-small: 1.4rem;
 
   /*
-   * PCテキスト：スタイルガイドの用途別にまとめる。
+   * PCテキスト：スタイルガイドと同じ「H1 → H2 → H3 → ナビ」の順。
    * 各用途は「文字サイズ → 字間 → 行高」の順。
    * 単位の目安：標準文字サイズ16px時は1rem = 10px。字間5%は0.05em。
    * 書体はbody、太さ・色は後述のh1〜h3やナビのクラスで指定する。
    */
+
+  /* H1（ページタイトル） */
+  --font-size-page-title: 4rem;
+  --letter-spacing-page-title: 0.1em;
+  --line-height-page-title: 1;
 
   /* H2 */
   --font-size-h2: 4rem;
@@ -45,11 +49,6 @@
   --letter-spacing-h3: 0;
   --line-height-h3: 1.15;
 
-  /* ページタイトル（H1） */
-  --font-size-page-title: 4rem;
-  --letter-spacing-page-title: 0.1em;
-  --line-height-page-title: 1;
-
   /* ナビ */
   --font-size-nav: 1.6rem;
   --letter-spacing-nav: 0.05em;
@@ -58,18 +57,16 @@
 
 @media (max-width: 767px) {
   :root {
-    --header-height: 60px;
-
     /* SPテキスト：PCと異なる値だけを変更する。字間・行高は共通。 */
+
+    /* H1（ページタイトル） */
+    --font-size-page-title: 2.8rem;
 
     /* H2 */
     --font-size-h2: 3.2rem;
 
     /* H3 */
     --font-size-h3: 1.6rem;
-
-    /* ページタイトル（H1） */
-    --font-size-page-title: 2.8rem;
 
     /* ハンバーガーメニュー：PCナビと同じ変数を使用。白色は.mobile-menu__linkで指定。 */
   }
@@ -143,7 +140,7 @@ body.is-menu-open {
 .site-header {
   position: relative;
   z-index: 20;
-  height: var(--header-height);
+  height: 90px;
   background: var(--color-background);
 }
 
@@ -346,7 +343,7 @@ body.is-menu-open {
 /* Responsive（767px以下：共通パーツのスマートフォン向け調整） */
 @media (max-width: 767px) {
   .site-header {
-    height: var(--header-height);
+    height: 60px;
   }
 
   .site-header__inner {

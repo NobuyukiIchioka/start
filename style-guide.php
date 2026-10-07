@@ -66,17 +66,9 @@ $currentPage = 'style-guide';
 
         <section class="style-guide__section" id="typography">
           <h2 class="style-guide__section-title">テキスト</h2>
-          <p class="style-guide__note">この欄は実際のタグと共通クラスで表示しています。767px以下ではSP設定へ切り替わります。</p>
+          <p class="style-guide__note">ベースの文字設定に続き、H1・H2・H3・ナビの順に表示しています。767px以下ではSP設定へ切り替わります。H1の見本には、実ページと同じ共通クラスを付けたpタグを使用しています。</p>
 
           <div class="style-guide__specimen-list">
-            <div class="style-guide__specimen">
-              <span class="style-guide__label">H2</span>
-              <h2>セクション見出し</h2>
-            </div>
-            <div class="style-guide__specimen">
-              <span class="style-guide__label">H3</span>
-              <h3>コンテンツ見出し</h3>
-            </div>
             <div class="style-guide__specimen">
               <span class="style-guide__label">ベース（日本語）</span>
               <p>仕事に最高のスタートを。株式会社STARTの基本テキストです。</p>
@@ -90,8 +82,25 @@ $currentPage = 'style-guide';
               <small>補足説明やコピーライトに使用する14pxのテキストです。</small>
             </div>
             <div class="style-guide__specimen">
-              <span class="style-guide__label">ナビ</span>
-              <a class="global-nav__link" href="#typography">ナビゲーション</a>
+              <span class="style-guide__label">H1（ページタイトル）</span>
+              <div class="style-guide__sample--inverse">
+                <p class="page-hero__title">ページタイトル</p>
+              </div>
+            </div>
+            <div class="style-guide__specimen">
+              <span class="style-guide__label">H2</span>
+              <h2>セクション見出し</h2>
+            </div>
+            <div class="style-guide__specimen">
+              <span class="style-guide__label">H3</span>
+              <h3>コンテンツ見出し</h3>
+            </div>
+            <div class="style-guide__specimen">
+              <span class="style-guide__label"><span class="u-pc">ナビ</span><span class="u-sp">ハンバーガーメニュー</span></span>
+              <div>
+                <div class="u-pc"><a class="global-nav__link" href="#typography">ナビゲーション</a></div>
+                <div class="u-sp style-guide__sample--inverse"><a class="mobile-menu__link" href="#typography">メニュー</a></div>
+              </div>
             </div>
           </div>
 
@@ -107,7 +116,7 @@ $currentPage = 'style-guide';
               </thead>
               <tbody>
                 <tr>
-                  <th>ページタイトル</th>
+                  <th>H1（ページタイトル）</th>
                   <td>40px</td>
                   <td>28px</td>
                   <td>ホワイト</td>
@@ -125,7 +134,7 @@ $currentPage = 'style-guide';
                   <td>メニュー色</td>
                 </tr>
                 <tr>
-                  <th>ナビ</th>
+                  <th>ナビ／ハンバーガーメニュー</th>
                   <td>16px</td>
                   <td>16px</td>
                   <td>メニュー色／ホワイト</td>
@@ -178,7 +187,7 @@ $currentPage = 'style-guide';
                 <img class="content-card__icon-image" src="./asset/img/人材紹介業icon-pc.png" alt="" width="96" height="96" />
               </picture>
               <h3 class="content-card__title">人材紹介業</h3>
-              <p class="content-card__text">求職者と企業をつなぎ、理想の仕事探しを支援する人材紹介サービスを運営しています。</p>
+              <p class="content-card__text">Webサイト制作やリニューアルに対応できる、Web制作人材の紹介を行っています。</p>
             </li>
             <li class="content-card">
               <picture class="content-card__icon">

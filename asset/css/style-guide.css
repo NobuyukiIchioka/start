@@ -121,6 +121,12 @@
   font-weight: 700;
 }
 
+/* 白い文字の見本を確認するための背景。文字の設定はmodule.cssを使用する。 */
+.style-guide__sample--inverse {
+  padding: 20px;
+  background: var(--color-brand);
+}
+
 .style-guide__table-wrap {
   margin-top: 32px;
   overflow-x: auto;

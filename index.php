@@ -41,6 +41,7 @@ $currentPage = 'home';
           <div class="service-section__header">
             <h2 class="section-title">サービス</h2>
           </div>
+          <!-- content-card系はmodule.cssの共通パーツ、service-listはtop.cssの配置用。 -->
           <ul class="service-list content-card-list">
             <li class="content-card">
               <picture class="content-card__icon">
@@ -48,7 +49,7 @@ $currentPage = 'home';
                 <img class="content-card__icon-image" src="./asset/img/人材紹介業icon-pc.png" alt="" width="96" height="96" />
               </picture>
               <h3 class="content-card__title">人材紹介業</h3>
-              <p class="content-card__text">求職者と企業をつなぎ、理想の仕事探しを支援する人材紹介サービスを運営しています。</p>
+              <p class="content-card__text">Webサイト制作やリニューアルに対応できる、Web制作人材の紹介を行っています。</p>
             </li>
             <li class="content-card">
               <picture class="content-card__icon">

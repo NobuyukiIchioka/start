@@ -53,10 +53,19 @@ $currentPage = 'company';
 
           <section class="company-map">
             <h2 class="visually-hidden">所在地</h2>
-            <!-- 埋め込みURLが確定したら、この仮表示をGoogle Mapのiframeに差し替える。 -->
-            <div class="company-map__placeholder">Google Map</div>
-            <!-- hrefには、確定したGoogle Mapの共有URLを設定する。 -->
-            <p class="company-map__link-wrap"><a class="company-map__link js-placeholder-link" href="#">Google mapで見る</a></p>
+            <!-- 地図の表示サイズはcompany.cssで管理する（PC：高さ400px／SP：高さ360px）。 -->
+            <iframe
+              class="company-map__iframe"
+              src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d11548.073203606364!2d139.7503706888081!3d35.687603519926476!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sja!2sjp!4v1791346275177!5m2!1sja!2sjp"
+
+              title="所在地のGoogleマップ"
+              width="1110"
+              height="400"
+              allowfullscreen
+              loading="lazy"
+              referrerpolicy="strict-origin-when-cross-origin"
+            ></iframe>
+            <p class="company-map__link-wrap"><a class="company-map__link" href="https://maps.app.goo.gl/vV1KGQYYVsNSkFka7" target="_blank" rel="noopener noreferrer">Google mapで見る</a></p>
           </section>
 
           <section class="company-news">
