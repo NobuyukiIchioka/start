@@ -50,3 +50,43 @@ document.querySelectorAll(".js-placeholder-link").forEach((link) => {
     event.preventDefault();
   });
 });
+
+// ページ先頭へ戻るボタン：400pxを超えたら表示し、リングにスクロール進捗を反映する。
+(() => {
+  const pageTopButton = document.querySelector(".pagetop");
+  if (!pageTopButton) return;
+
+  const progressBar = pageTopButton.querySelector(".pagetop__bar");
+  if (!progressBar) return;
+
+  const circumference = 182.21;
+  const showAfter = 400;
+  const topLink = document.querySelector(".site-logo");
+
+  const updatePageTop = () => {
+    const scrollY = window.scrollY;
+    const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = maxScroll > 0 ? Math.max(0, Math.min(1, scrollY / maxScroll)) : 0;
+    const isVisible = scrollY > showAfter;
+
+    progressBar.style.strokeDashoffset = circumference * (1 - progress);
+    // キーボード操作の位置を、非表示になるボタンに残さない。
+    if (!isVisible && document.activeElement === pageTopButton && topLink) {
+      topLink.focus({ preventScroll: true });
+    }
+    pageTopButton.classList.toggle("is-visible", isVisible);
+    pageTopButton.tabIndex = isVisible ? 0 : -1;
+    pageTopButton.setAttribute("aria-hidden", String(!isVisible));
+  };
+
+  window.addEventListener("scroll", updatePageTop, { passive: true });
+  window.addEventListener("resize", updatePageTop);
+  window.addEventListener("load", updatePageTop);
+  window.addEventListener("pageshow", updatePageTop);
+  updatePageTop();
+
+  pageTopButton.addEventListener("click", () => {
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    window.scrollTo({ top: 0, behavior: reduceMotion ? "auto" : "smooth" });
+  });
+})();

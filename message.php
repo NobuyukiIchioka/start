@@ -13,9 +13,9 @@ $currentPage = 'message';
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Roboto:wght@500;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="./asset/css/base.css" />
-    <link rel="stylesheet" href="./asset/css/module.css" />
+    <link rel="stylesheet" href="./asset/css/module.css?v=<?= filemtime(__DIR__ . '/asset/css/module.css') ?>" />
     <link rel="stylesheet" href="./asset/css/message.css" />
-    <script src="./asset/js/main.js" defer></script>
+    <script src="./asset/js/main.js?v=<?= filemtime(__DIR__ . '/asset/js/main.js') ?>" defer></script>
   </head>
   <body>
     <?php require __DIR__ . '/asset/parts/header.php'; ?>
@@ -24,6 +24,16 @@ $currentPage = 'message';
       <section class="page-hero page-hero--message">
         <h1 class="page-hero__title">メッセージ</h1>
       </section>
+
+      <nav class="breadcrumb container" aria-label="パンくずリスト">
+        <ol class="breadcrumb__list">
+          <li class="breadcrumb__item"><a class="breadcrumb__link" href="./index.php">ホーム</a></li>
+          <li class="breadcrumb__item">
+            <span class="breadcrumb__separator" aria-hidden="true">›</span>
+            <span aria-current="page">メッセージ</span>
+          </li>
+        </ol>
+      </nav>
 
       <section class="message-main">
         <div class="container">

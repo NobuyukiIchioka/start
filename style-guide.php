@@ -13,9 +13,9 @@ $currentPage = 'style-guide';
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Roboto:wght@500;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="./asset/css/base.css" />
-    <link rel="stylesheet" href="./asset/css/module.css" />
+    <link rel="stylesheet" href="./asset/css/module.css?v=<?= filemtime(__DIR__ . '/asset/css/module.css') ?>" />
     <link rel="stylesheet" href="./asset/css/style-guide.css" />
-    <script src="./asset/js/main.js" defer></script>
+    <script src="./asset/js/main.js?v=<?= filemtime(__DIR__ . '/asset/js/main.js') ?>" defer></script>
   </head>
   <body>
     <?php require __DIR__ . '/asset/parts/header.php'; ?>

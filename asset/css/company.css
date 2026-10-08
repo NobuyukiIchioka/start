@@ -43,18 +43,33 @@
 
 @media (max-width: 767px) {
   .company-main {
-    padding: 44px 0 64px;
+    padding: 40px 0 60px;
   }
 
   .company-profile__row {
-    grid-template-columns: 105px minmax(0, 1fr);
-    padding: 18px 0;
+    grid-template-columns: 100px minmax(0, 1fr);
+    /* 下線1pxを含め、次の項目までの間隔を20pxにする。 */
+    padding: 20px 0 19px;
   }
 
   .company-profile__term,
   .company-profile__description {
-    font-size: 14px;
-    line-height: 1.7;
+    font-size: var(--font-size-small);
+    line-height: 1.5;
+  }
+
+  .company-profile__description {
+    font-weight: 500;
+  }
+
+  .company-profile__description time {
+    font-family: inherit;
+  }
+
+  .company-profile__description--representative {
+    font-size: var(--font-size-base);
+    letter-spacing: 0.05em;
+    line-height: 1.15;
   }
 
   .company-map {
@@ -62,14 +77,21 @@
   }
 
   .company-map__iframe {
-    height: 360px;
+    height: 300px;
+  }
+
+  .company-map__link-wrap {
+    margin-top: 15px;
+    font-size: 12px;
+    line-height: 1.15;
   }
 
   .company-map__link {
-    font-size: 14px;
+    font-size: 12px;
+    font-weight: 500;
   }
 
   .company-news {
-    margin-top: 50px;
+    margin-top: 35px;
   }
 }

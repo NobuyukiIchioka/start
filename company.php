@@ -13,9 +13,9 @@ $currentPage = 'company';
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Roboto:wght@500;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="./asset/css/base.css" />
-    <link rel="stylesheet" href="./asset/css/module.css" />
+    <link rel="stylesheet" href="./asset/css/module.css?v=<?= filemtime(__DIR__ . '/asset/css/module.css') ?>" />
     <link rel="stylesheet" href="./asset/css/company.css" />
-    <script src="./asset/js/main.js" defer></script>
+    <script src="./asset/js/main.js?v=<?= filemtime(__DIR__ . '/asset/js/main.js') ?>" defer></script>
   </head>
   <body>
     <?php require __DIR__ . '/asset/parts/header.php'; ?>
@@ -24,6 +24,16 @@ $currentPage = 'company';
       <section class="page-hero page-hero--company">
         <h1 class="page-hero__title">会社概要</h1>
       </section>
+
+      <nav class="breadcrumb container" aria-label="パンくずリスト">
+        <ol class="breadcrumb__list">
+          <li class="breadcrumb__item"><a class="breadcrumb__link" href="./index.php">ホーム</a></li>
+          <li class="breadcrumb__item">
+            <span class="breadcrumb__separator" aria-hidden="true">›</span>
+            <span aria-current="page">会社概要</span>
+          </li>
+        </ol>
+      </nav>
 
       <div class="company-main">
         <div class="container">
@@ -39,7 +49,7 @@ $currentPage = 'company';
             </div>
             <div class="company-profile__row">
               <dt class="company-profile__term">代表取締役</dt>
-              <dd class="company-profile__description">鈴木 博之</dd>
+              <dd class="company-profile__description company-profile__description--representative">鈴木 博之</dd>
             </div>
             <div class="company-profile__row">
               <dt class="company-profile__term">資本金</dt>
@@ -53,7 +63,7 @@ $currentPage = 'company';
 
           <section class="company-map">
             <h2 class="visually-hidden">所在地</h2>
-            <!-- 地図の表示サイズはcompany.cssで管理する（PC：高さ400px／SP：高さ360px）。 -->
+            <!-- 地図の表示サイズはcompany.cssで管理する（PC：高さ400px／SP：高さ300px）。 -->
             <iframe
               class="company-map__iframe"
               src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d11548.073203606364!2d139.7503706888081!3d35.687603519926476!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sja!2sjp!4v1791346275177!5m2!1sja!2sjp"

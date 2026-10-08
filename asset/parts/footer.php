@@ -10,3 +10,5 @@
     <small class="site-footer__copyright">© START</small>
   </div>
 </footer>
+
+<?php require __DIR__ . '/pagetop.php'; ?>

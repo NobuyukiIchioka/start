@@ -11,6 +11,8 @@
   /* 共通レイアウト（コンテンツ幅・左右余白） */
   --content-width: 1110px;
   --side-padding: 20px;
+  /* 固定ヘッダーと本文の開始位置・スクロール位置で共用する高さ。 */
+  --site-header-height: 90px;
 
   /* COLOR：スタイルガイドと同じ項目・順序 */
   --color-brand: #dd1b57;        /* ブランドカラー */
@@ -57,6 +59,8 @@
 
 @media (max-width: 767px) {
   :root {
+    --site-header-height: 60px;
+
     /* SPテキスト：PCと異なる値だけを変更する。字間・行高は共通。 */
 
     /* H1（ページタイトル） */
@@ -77,9 +81,11 @@ html {
   /* STARTのrem指定の基準。ブラウザの標準文字サイズ16pxの場合は1rem = 10px */
   font-size: 62.5%;
   scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--site-header-height) + 20px);
 }
 
 body {
+  padding-top: var(--site-header-height);
   min-width: 320px;
   min-height: 100dvh;
   color: var(--color-text);
@@ -138,9 +144,12 @@ body.is-menu-open {
 }
 
 .site-header {
-  position: relative;
+  position: fixed;
   z-index: 20;
-  height: 90px;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--site-header-height);
   background: var(--color-background);
 }
 
@@ -260,6 +269,141 @@ body.is-menu-open {
   text-align: center;
 }
 
+/* Breadcrumb（下層ページの現在位置） */
+.breadcrumb {
+  padding-block: 14px;
+  font-size: 1.2rem;
+  line-height: 1.6;
+}
+
+.breadcrumb__list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.breadcrumb__item {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.breadcrumb__link {
+  color: var(--color-text);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.breadcrumb__link:hover,
+.breadcrumb__link:focus-visible {
+  color: var(--color-brand);
+}
+
+.breadcrumb__separator {
+  color: var(--color-text);
+}
+
+/* Page top（スクロール進捗を示す、ページ先頭へ戻るボタン） */
+.pagetop {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  /* 固定ヘッダーより上、SPメニュー（100）より下。 */
+  z-index: 30;
+  width: 60px;
+  height: 60px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: var(--color-background);
+  color: var(--color-brand);
+  cursor: pointer;
+  box-shadow: 0 2px 12px rgb(21 21 21 / 10%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  font-family: inherit;
+  opacity: 0;
+  transform: translateY(12px);
+  pointer-events: none;
+  transition: opacity 0.25s, transform 0.25s, background-color 0.2s, color 0.2s;
+}
+
+.pagetop.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.pagetop:hover {
+  background: var(--color-brand);
+  color: #fff;
+}
+
+.pagetop:focus-visible {
+  outline: 3px solid #f7a8c0;
+  outline-offset: 3px;
+}
+
+.pagetop__ring {
+  position: absolute;
+  inset: 0;
+  width: 60px;
+  height: 60px;
+  transform: rotate(-90deg);
+}
+
+.pagetop__track,
+.pagetop__bar {
+  fill: none;
+}
+
+.pagetop__track {
+  stroke: #f3dfe5;
+  stroke-width: 1;
+}
+
+.pagetop__bar {
+  stroke: var(--color-brand);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-dasharray: 182.21;
+  stroke-dashoffset: 182.21;
+}
+
+.pagetop__icon {
+  position: relative;
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.pagetop__label {
+  position: relative;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  padding-left: 0.18em;
+  line-height: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .pagetop {
+    transition: none;
+  }
+}
+
 /* News list（ニュース一覧：日付＋本文） */
 .news-list__item {
   border-bottom: 1px solid var(--color-line);
@@ -342,10 +486,6 @@ body.is-menu-open {
 
 /* Responsive（767px以下：共通パーツのスマートフォン向け調整） */
 @media (max-width: 767px) {
-  .site-header {
-    height: 60px;
-  }
-
   .site-header__inner {
     padding: 0 0 0 20px;
   }
