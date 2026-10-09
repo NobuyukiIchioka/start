@@ -51,7 +51,7 @@ document.querySelectorAll(".js-placeholder-link").forEach((link) => {
   });
 });
 
-// ページ先頭へ戻るボタン：400pxを超えたら表示し、リングにスクロール進捗を反映する。
+// ページ先頭へ戻るボタン：170pxを超えたら表示し、リングにスクロール進捗を反映する。
 (() => {
   const pageTopButton = document.querySelector(".pagetop");
   if (!pageTopButton) return;
@@ -60,7 +60,7 @@ document.querySelectorAll(".js-placeholder-link").forEach((link) => {
   if (!progressBar) return;
 
   const circumference = 182.21;
-  const showAfter = 400;
+  const showAfter = 170;
   const topLink = document.querySelector(".site-logo");
 
   const updatePageTop = () => {
