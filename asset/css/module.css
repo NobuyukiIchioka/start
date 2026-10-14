@@ -269,39 +269,57 @@ body.is-menu-open {
   text-align: center;
 }
 
-/* Breadcrumb（下層ページの現在位置） */
+/* Breadcrumb（下層ページのパンくずリスト） */
 .breadcrumb {
-  padding-block: 14px;
-  font-size: 1.2rem;
-  line-height: 1.6;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 20px 40px 0;
+  box-sizing: border-box;
 }
 
 .breadcrumb__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   gap: 10px;
+  font-size: 13px;
+  line-height: 1.6;
 }
 
 .breadcrumb__item {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   gap: 10px;
 }
 
 .breadcrumb__link {
-  color: var(--color-text);
-  text-decoration: underline;
-  text-underline-offset: 0.2em;
+  color: var(--color-menu);
+  text-decoration: none;
 }
 
 .breadcrumb__link:hover,
 .breadcrumb__link:focus-visible {
   color: var(--color-brand);
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
-.breadcrumb__separator {
-  color: var(--color-text);
+.breadcrumb__sep {
+  width: 8px;
+  height: 8px;
+  fill: none;
+  stroke: #b5b5b5;
+  stroke-width: 1.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.breadcrumb__item--current {
+  color: var(--color-brand);
+  font-weight: 700;
 }
 
 /* Page top（スクロール進捗を示す、ページ先頭へ戻るボタン） */

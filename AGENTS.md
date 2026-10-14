@@ -47,6 +47,7 @@ start/
         ├── header.php
         ├── footer.php
         ├── pagetop.php
+        ├── breadcrumb.php
         ├── news-list.php
         └── study.php
 ```
@@ -55,7 +56,7 @@ start/
 
 ## PHPと共通パーツ
 
-- PHPの共通パーツは、ヘッダー、フッター、ニュース一覧、ページTOPボタン。ページTOPボタンは2026-10-08の追加依頼で設置した
+- PHPの共通パーツは、ヘッダー、フッター、ニュース一覧、ページTOPボタン、パンくずリスト。ページTOPボタンは2026-10-08の追加依頼で設置し、パンくずは2026-10-13に共通パーツ化した
 - 共通パーツは `asset/parts/` に置く
 - 各ページからは `require __DIR__ . '/asset/parts/ファイル名.php';` で読み込む
 - `pagetop.php` は `footer.php` の末尾から `require __DIR__ . '/pagetop.php';` で読み込む。各ページから重複して読み込まない
@@ -69,6 +70,14 @@ $currentPage = 'home';
 ```
 
 使用する値は `home`、`message`、`company`。ヘッダーでは、この値に対応するリンクだけに `aria-current="page"` を付け、現在ページをブランドカラーで表示する。
+
+### パンくずリスト
+
+- `message.php` と `company.php` の冒頭で `$breadcrumbs` 配列に項目名（`label`）とリンク先（`url`）を手書きで指定する。URLやページタイトルから自動取得しない
+- `$currentPage` と `$breadcrumbs` はファイル冒頭にまとめ、それぞれの用途をコメントで示す。パンくずの `require` 直前にも、冒頭の `$breadcrumbs` を使って表示することをHTMLコメントで記載する
+- ヒーロー直後で `asset/parts/breadcrumb.php` を読み込む。共通パーツがHTML・矢印のインラインSVGを出力し、最後の項目をリンクなしの現在ページ（`aria-current="page"`）として表示する。最後の項目には `url` を指定しない
+- 項目名とリンク先は出力時に `htmlspecialchars` でエスケープする。JavaScriptは使用しない。ホームページにはパンくずを置かない
+- HTML・SVGの構造は共通PHPパーツ、見た目は `module.css` の `.breadcrumb` 系、表示内容は各ページの配列で管理する
 
 ### 学習用ファイル
 
@@ -284,7 +293,7 @@ PHPのincludeはHTMLファイルの直接表示では動作しない。MAMPな�
 - `.site-header` は `position: fixed; top: 0; left: 0; width: 100%; z-index: 20`。高さは `--site-header-height`（PC 90px／SP 60px）を使用する。
 - `body` の `padding-top` に同じ変数を指定し、固定ヘッダーが本文に重ならないようにする。`html` の `scroll-padding-top` はヘッダー高＋20px。
 - `message.php` と `company.php` のヒーロー直後にパンくずを追加。ホームへのリンクと現在ページ名を表示し、現在ページに `aria-current="page"` を付ける。ホームページには置かない。
-- パンくずのHTMLは各ページ、CSSは `module.css` の `.breadcrumb` 系。上下padding14px、文字12px、行高1.6、項目間隔10px。
+- 2026-10-13更新：パンくずのHTML・SVGは `asset/parts/breadcrumb.php`、表示項目は各ページの `$breadcrumbs`、CSSは `module.css` の `.breadcrumb` 系。最大幅960px、paddingは上20px・左右40px・下0、文字13px、行高1.6、項目間隔10px。メッセージ本文の上余白はPC 80px、SP 40px。
 
 ### ページTOPボタン
 

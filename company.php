@@ -1,6 +1,13 @@
 <?php
+// ヘッダーのナビで現在のページを示す。
 $currentPage = 'company';
-?>
+
+// パンくずの表示内容。最後の項目が現在のページになる。
+$breadcrumbs = [
+  ['label' => 'ホーム'],
+  ['label' => '会社概要'],
+]; ?>
+
 <!DOCTYPE html>
 <html lang="ja">
   <head>
@@ -25,15 +32,8 @@ $currentPage = 'company';
         <h1 class="page-hero__title">会社概要</h1>
       </section>
 
-      <nav class="breadcrumb container" aria-label="パンくずリスト">
-        <ol class="breadcrumb__list">
-          <li class="breadcrumb__item"><a class="breadcrumb__link" href="./index.php">ホーム</a></li>
-          <li class="breadcrumb__item">
-            <span class="breadcrumb__separator" aria-hidden="true">›</span>
-            <span aria-current="page">会社概要</span>
-          </li>
-        </ol>
-      </nav>
+       <!-- パンくずリスト：このファイル冒頭の $breadcrumbs を使ってページ名を表示 -->
+      <?php require __DIR__ . '/asset/parts/breadcrumb.php'; ?>
 
       <div class="company-main">
         <div class="container">
