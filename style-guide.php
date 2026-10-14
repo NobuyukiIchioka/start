@@ -1,5 +1,10 @@
 <?php
 $currentPage = 'style-guide';
+// 共通パーツの見本は、このページをiframe内でも使って表示する。
+$requestedPreview = $_GET['preview'] ?? '';
+$preview = is_string($requestedPreview) && in_array($requestedPreview, ['header', 'footer'], true)
+  ? $requestedPreview
+  : '';
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -8,16 +13,27 @@ $currentPage = 'style-guide';
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="株式会社STARTのスタイルガイド確認ページです。" />
     <title>スタイルガイド | 株式会社START</title>
+    <?php if ($preview !== ''): ?>
+    <base target="_top" />
+    <?php endif; ?>
     <link rel="icon" href="./asset/img/favicon.png" type="image/png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Roboto:wght@500;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="./asset/css/base.css" />
     <link rel="stylesheet" href="./asset/css/module.css?v=<?= filemtime(__DIR__ . '/asset/css/module.css') ?>" />
-    <link rel="stylesheet" href="./asset/css/style-guide.css" />
+    <link rel="stylesheet" href="./asset/css/style-guide.css?v=<?= filemtime(__DIR__ . '/asset/css/style-guide.css') ?>" />
     <script src="./asset/js/main.js?v=<?= filemtime(__DIR__ . '/asset/js/main.js') ?>" defer></script>
   </head>
-  <body>
+  <body<?= $preview !== '' ? ' class="style-guide-preview style-guide-preview--' . $preview . '"' : '' ?>>
+    <?php if ($preview === 'header'): ?>
+    <?php require __DIR__ . '/asset/parts/header.php'; ?>
+    <main class="style-guide__menu-demo">
+      <p>右上のボタンでメニューを開き、×・メニュー外のクリック・Escキーで閉じる動作を確認できます。</p>
+    </main>
+    <?php elseif ($preview === 'footer'): ?>
+    <?php require __DIR__ . '/asset/parts/footer.php'; ?>
+    <?php else: ?>
     <?php require __DIR__ . '/asset/parts/header.php'; ?>
 
     <main class="style-guide">
@@ -34,7 +50,9 @@ $currentPage = 'style-guide';
             <li><a href="#responsive">レスポンシブ</a></li>
             <li><a href="#layout">レイアウト</a></li>
             <li><a href="#modules">共通パーツ</a></li>
+            <li><a href="#header-demo">ヘッダー・SPメニュー</a></li>
             <li><a href="#page-title">下層ページタイトル</a></li>
+            <li><a href="#footer-demo">フッター</a></li>
           </ul>
         </nav>
 
@@ -209,6 +227,15 @@ $currentPage = 'style-guide';
         </section>
       </div>
 
+      <section class="style-guide__part-demo" id="header-demo">
+        <div class="container">
+          <h2 class="style-guide__section-title">ヘッダー・ナビゲーション</h2>
+          <p class="style-guide__note"><code>asset/parts/header.php</code>を読み込んだ実際の共通パーツです。高さはPC：90px／SP：60px。767px以下ではハンバーガーメニューに切り替わります。</p>
+          <p class="style-guide__note">SPでは、見本の右上のボタンからメニューを開閉できます。見本内のリンクを押すと、通常どおり各ページへ移動します。</p>
+        </div>
+        <iframe class="style-guide__part-frame style-guide__part-frame--header" src="./style-guide.php?preview=header" title="共通ヘッダーとSPメニューの表示・操作見本"></iframe>
+      </section>
+
       <section class="style-guide__page-title-demo" id="page-title">
         <div class="container">
           <h2 class="style-guide__section-title">下層ページタイトル</h2>
@@ -219,8 +246,19 @@ $currentPage = 'style-guide';
           <p class="page-hero__title">ページタイトル</p>
         </div>
       </section>
+
+      <section class="style-guide__part-demo" id="footer-demo">
+        <div class="container">
+          <h2 class="style-guide__section-title">フッター</h2>
+          <p class="style-guide__note"><code>asset/parts/footer.php</code>を読み込んだ実際の共通パーツです。背景色、ナビゲーション、コピーライト、PC・SPの余白を確認できます。</p>
+          <p class="style-guide__note">ページTOPボタンは、このページをスクロールして確認できます。</p>
+        </div>
+        <iframe class="style-guide__part-frame style-guide__part-frame--footer" src="./style-guide.php?preview=footer" title="共通フッターの表示見本"></iframe>
+      </section>
     </main>
 
-    <?php require __DIR__ . '/asset/parts/footer.php'; ?>
+    <!-- フッターは上の見本だけを表示し、ページTOPボタンを単独で読み込む。 -->
+    <?php require __DIR__ . '/asset/parts/pagetop.php'; ?>
+    <?php endif; ?>
   </body>
 </html>
