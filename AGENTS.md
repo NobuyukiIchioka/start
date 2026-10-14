@@ -11,6 +11,8 @@
   - `message.php`：メッセージ
   - `company.php`：会社概要
 - 内部確認用として `style-guide.php` を置き、共通スタイルをブラウザで確認する
+- ヘッダー・フッターの表示見本は `style-guide.php?preview=header`／`?preview=footer` をiframeで表示し、実際の共通PHPパーツを読み込む。固定ヘッダー・SPメニュー・ページTOPボタンが同一文書内で重複しないよう、見本を直接二重includeしない。確認欄だけの表示調整は `style-guide.css` に置く
+- スタイルガイドのフッターは確認欄の見本1つだけを表示し、ページ最下部に重複して追加しない。通常表示のページTOPボタンは `pagetop.php` を単独で読み込む
 - 実装にはPHP、HTML、CSS、JavaScriptを使用する
 - CSSフレームワークやJavaScriptライブラリは使用しない
 - JavaScriptはVanilla JavaScriptで記述する
@@ -58,7 +60,7 @@ start/
 - PHPの共通パーツは、ヘッダー、フッター、ニュース一覧、ページTOPボタン。ページTOPボタンは2026-10-08の追加依頼で設置した
 - 共通パーツは `asset/parts/` に置く
 - 各ページからは `require __DIR__ . '/asset/parts/ファイル名.php';` で読み込む
-- `pagetop.php` は `footer.php` の末尾から `require __DIR__ . '/pagetop.php';` で読み込む。各ページから重複して読み込まない
+- `pagetop.php` は `footer.php` の末尾から `require __DIR__ . '/pagetop.php';` で読み込む。各ページから重複して読み込まない。例外として、スタイルガイドの通常表示はページ最下部のフッターを省くため、`pagetop.php` だけを単独で読み込む
 - `head` 要素は共通化せず、各ページに記述する
 - ページ冒頭で `$currentPage` を設定してからヘッダーを読み込む
 

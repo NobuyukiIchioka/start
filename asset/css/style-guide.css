@@ -17,8 +17,33 @@
   padding-block: 56px 80px;
 }
 
-.style-guide__page-title-demo {
+.style-guide__page-title-demo,
+.style-guide__part-demo {
   padding-bottom: 56px;
+}
+
+/* 共通パーツは別の表示領域で確認し、固定ヘッダーやメニューの重複を防ぐ。 */
+.style-guide__part-frame {
+  display: block;
+  width: 100%;
+  border: 0;
+}
+
+.style-guide__part-frame--header {
+  height: var(--site-header-height);
+}
+
+.style-guide__part-frame--footer {
+  height: 159px;
+}
+
+.style-guide-preview--footer {
+  min-height: 0;
+  padding-top: 0;
+}
+
+.style-guide__menu-demo {
+  display: none;
 }
 
 .style-guide__index,
@@ -204,6 +229,23 @@
 }
 
 @media (max-width: 767px) {
+  .style-guide__part-frame--header {
+    /* ヘッダーの下に、右から開くSPメニューを操作する領域を確保する。 */
+    height: calc(var(--site-header-height) + 240px);
+  }
+
+  .style-guide__part-frame--footer {
+    height: 119px;
+  }
+
+  .style-guide__menu-demo {
+    display: block;
+    min-height: 240px;
+    padding: 40px 20px;
+    background: #f7f7f7;
+    font-size: var(--font-size-small);
+  }
+
   .style-guide__hero {
     padding-block: 48px;
   }
