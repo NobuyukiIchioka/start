@@ -1,5 +1,5 @@
 <?php
-$currentPage = $currentPage ?? '';
+require_once __DIR__ . '/page-context.php';
 ?>
 <header class="site-header">
   <div class="site-header__inner">

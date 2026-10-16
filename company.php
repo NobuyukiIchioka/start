@@ -1,20 +1,12 @@
-<?php
-// ヘッダーのナビで現在のページを示す。
-$currentPage = 'company';
-
-// パンくずの表示内容。最後の項目が現在のページになる。
-$breadcrumbs = [
-  ['label' => 'ホーム'],
-  ['label' => '会社概要'],
-]; ?>
-
 <!DOCTYPE html>
 <html lang="ja">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="株式会社STARTの会社概要です。" />
-    <title>会社概要｜株式会社START</title>
+    <!-- 学習用サイトのため、検索結果に表示しない。 -->
+    <meta name="robots" content="noindex" />
+    <meta name="description" content="株式会社STARTの会社概要をご紹介します。社名、設立日、代表者、資本金、所在地の基本情報と、アクセスマップ、ニュースを掲載しています。" />
+    <title><?= htmlspecialchars($pageTitle = '会社概要', ENT_QUOTES, 'UTF-8') ?></title>
     <link rel="icon" href="./asset/img/favicon.png" type="image/png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -32,7 +24,7 @@ $breadcrumbs = [
         <h1 class="page-hero__title">会社概要</h1>
       </section>
 
-       <!-- パンくずリスト：このファイル冒頭の $breadcrumbs を使ってページ名を表示 -->
+      <!-- パンくずリスト：このページのタイトルからページ名を自動表示する。 -->
       <?php require __DIR__ . '/asset/parts/breadcrumb.php'; ?>
 
       <div class="company-main">

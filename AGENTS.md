@@ -50,6 +50,7 @@ start/
         ├── footer.php
         ├── pagetop.php
         ├── breadcrumb.php
+        ├── page-context.php
         ├── news-list.php
         └── study.php
 ```
@@ -63,23 +64,21 @@ start/
 - 各ページからは `require __DIR__ . '/asset/parts/ファイル名.php';` で読み込む
 - `pagetop.php` は `footer.php` の末尾から `require __DIR__ . '/pagetop.php';` で読み込む。各ページから重複して読み込まない。例外として、スタイルガイドの通常表示はページ最下部のフッターを省くため、`pagetop.php` だけを単独で読み込む
 - `head` 要素は共通化せず、各ページに記述する
-- ページ冒頭で `$currentPage` を設定してからヘッダーを読み込む
+- ページ名の管理元は各ページの `<title>` にする。タイトルの箇所で `$pageTitle` を設定し、その値をHTMLとしてエスケープして出力する。冒頭に `$currentPage` や `$breadcrumbs` を別途記述しない
 
 ```php
-<?php
-$currentPage = 'home';
-?>
+<title><?= htmlspecialchars($pageTitle = 'メッセージ', ENT_QUOTES, 'UTF-8') ?></title>
 ```
 
-使用する値は `home`、`message`、`company`。ヘッダーでは、この値に対応するリンクだけに `aria-current="page"` を付け、現在ページをブランドカラーで表示する。
+`asset/parts/page-context.php` が、タイトル全文（前後の空白だけを除く）を `$pageName` とし、共通の対応表から `$currentPage` を自動設定する。会社名や区切り文字を省く処理は行わない。ヘッダーは対応するPC・SP両方のリンクに `aria-current="page"` を付ける。トップの現在のタイトル全文、「株式会社START」「ホーム」はホーム、「メッセージ」「代表メッセージ」はメッセージ、「会社概要」は会社概要に対応する。未登録のタイトルではどのナビも現在ページにしない。ナビに対応する新しいページ名を増やす場合は、共通対応表も更新する。
 
 ### パンくずリスト
 
-- `message.php` と `company.php` の冒頭で `$breadcrumbs` 配列に項目名（`label`）とリンク先（`url`）を手書きで指定する。URLやページタイトルから自動取得しない
-- `$currentPage` と `$breadcrumbs` はファイル冒頭にまとめ、それぞれの用途をコメントで示す。パンくずの `require` 直前にも、冒頭の `$breadcrumbs` を使って表示することをHTMLコメントで記載する
-- ヒーロー直後で `asset/parts/breadcrumb.php` を読み込む。共通パーツがHTML・矢印のインラインSVGを出力し、最後の項目をリンクなしの現在ページ（`aria-current="page"`）として表示する。最後の項目には `url` を指定しない
-- 項目名とリンク先は出力時に `htmlspecialchars` でエスケープする。JavaScriptは使用しない。ホームページにはパンくずを置かない
-- HTML・SVGの構造は共通PHPパーツ、見た目は `module.css` の `.breadcrumb` 系、表示内容は各ページの配列で管理する
+- 2026-10-16のユーザー指定により、パンくずとヘッダーの現在ページをページタイトルから自動設定する方式へ変更した。従来の各ページの `$breadcrumbs` 配列は使用しない
+- ヒーロー直後で `asset/parts/breadcrumb.php` を読み込む。直前のHTMLコメントには、ページタイトルから表示することを記載する
+- 共通パーツにホームへのリンク（`./index.php`）と矢印のインラインSVGを固定し、その後に `$pageName` をリンクなしの現在ページ（`aria-current="page"`）として表示する。現在の構造は「ホーム → 現在ページ」の2階層で、URLから親階層を推測しない
+- `header.php` と `breadcrumb.php` は `page-context.php` を `require_once` して同じ判定を使う。ページ名は出力時に `htmlspecialchars` でエスケープする。JavaScriptを無効にしても表示・判定できる。ホームページにはパンくずを置かない
+- HTML・SVGの構造は共通PHPパーツ、見た目は `module.css` の `.breadcrumb` 系、ページ名の指定は各ページの `<title>` で管理する
 
 ### 学習用ファイル
 
@@ -160,6 +159,14 @@ $currentPage = 'home';
 - ハンバーガーメニューの開閉状態は `aria-expanded` と表示状態を同期する
 - 意味のないARIA属性は増やさず、まず適切なHTML要素を使用する
 
+## SEOと公開方針（2026-10-16）
+
+- ユーザー指定により、学習用サイトとして公開し、検索結果には表示しない。`index.php`・`message.php`・`company.php` の `head` に `<meta name="robots" content="noindex" />` を記述する
+- 内部確認用の `style-guide.php` にも `noindex` を指定する。通常表示と `?preview=header`／`?preview=footer` のすべてに適用する
+- ページごとの `title` と `meta description` は各PHPの `head` に記述し、本文にある情報を使う。`title` は同じ箇所で `$pageTitle` にも値を設定し、ヘッダー・パンくずと共用する。説明文はトップが3事業、メッセージが代表者の考え、会社概要が掲載する会社情報を説明する。既存の見出し・本文は、この設定で変更しない
+- `noindex` を検索エンジンが読み取れるよう、`robots.txt` でサイト全体のクロールを禁止する設定は追加しない。`noindex` は閲覧を制限する機能ではない
+- 公開URLは未確認。仮ドメインやアクセス時のホスト名から `canonical`・サイトマップ・構造化データのURLを生成しない。検索結果に掲載する方針へ変更する場合は、`noindex` の解除とともに公開URLを確認して正規URL・サイトマップ等を設定する
+
 ## JavaScript
 
 - JavaScriptは `asset/js/main.js` にまとめる
@@ -177,8 +184,7 @@ $currentPage = 'home';
 - サービスカードのHTMLは、スタイルガイドと同じ `content-card`・`content-card__icon`・`content-card__icon-image`・`content-card__title`・`content-card__text` を使用する。一覧は `content-card-list`（module.cssの列数・カード間隔）と `service-list`（top.cssの上余白）を併用する。CSSを旧 `service-card` 名へ戻したり、カード内に仮リンクを追加したりしない
 - 下層ページタイトルは共通モジュール `.page-hero` と `.page-hero__title` を使用し、実ページの見出しは表示するH1にする。画面幅100%、PCは高さ190px、767px以下は160px、背景画像は `cover`・中央配置、見出しは上下左右中央。トップのメインビジュアルとは画像ルールを分ける。
 - 下層ページ共通の背景は文字なしの `mv-bg-pc.png`／`mv-bg-sp.png` を使用し、完成見本画像は実装に使用しない。共通形状・タイトル指定と書体・文字サイズの変数は、いずれも `module.css` で管理する。
-- ニュース項目はリンクを想定したホバー表現を持つ
-- ニュースのリンク先は未確定のため、現在は `href="#"` の仮リンク
+- ニュース項目は2026-10-16のユーザー指定によりリンクなしで表示する。`news-list.php` の `li.news-list__item` に日付と本文を直接置き、配置・余白・下線は `module.css` の `.news-list__item` で管理する。PCは日付と本文を横並び、SPは縦並びにする。仮リンクやリンク用のホバー表現を追加しない
 - 人材紹介業の説明は、人材紹介サービスの内容にする
 - トップページの大きな背景文字 `SERVICE` は、`.service-section__header::before` に配置する（セクション直下の疑似要素へ戻さない）
 - Google Mapはユーザー指定URLのiframeで表示する。`company.css` の `.company-map__iframe` で幅100%、高さPC 400px／SP 300pxを指定する。SPの高さ・周囲の余白は2026-10-08にFigmaに合わせて調整済み。外部リンクもユーザー指定URLを使用する
@@ -295,7 +301,7 @@ PHPのincludeはHTMLファイルの直接表示では動作しない。MAMPな�
 - `.site-header` は `position: fixed; top: 0; left: 0; width: 100%; z-index: 20`。高さは `--site-header-height`（PC 90px／SP 60px）を使用する。
 - `body` の `padding-top` に同じ変数を指定し、固定ヘッダーが本文に重ならないようにする。`html` の `scroll-padding-top` はヘッダー高＋20px。
 - `message.php` と `company.php` のヒーロー直後にパンくずを追加。ホームへのリンクと現在ページ名を表示し、現在ページに `aria-current="page"` を付ける。ホームページには置かない。
-- 2026-10-13更新：パンくずのHTML・SVGは `asset/parts/breadcrumb.php`、表示項目は各ページの `$breadcrumbs`、CSSは `module.css` の `.breadcrumb` 系。最大幅960px、paddingは上20px・左右40px・下0、文字13px、行高1.6、項目間隔10px。メッセージ本文の上余白はPC 80px、SP 40px。
+- 2026-10-16更新：パンくずのHTML・SVGとホームへのリンクは `asset/parts/breadcrumb.php`、現在ページ名は `<title>` から `page-context.php` が取得し、CSSは `module.css` の `.breadcrumb` 系。最大幅960px、paddingは上20px・左右40px・下0、文字13px、行高1.6、項目間隔10px。メッセージ本文の上余白はPC 80px、SP 40px。
 
 ### ページTOPボタン
 

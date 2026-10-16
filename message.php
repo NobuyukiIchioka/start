@@ -1,20 +1,12 @@
-<?php
-// ヘッダーのナビで現在のページを示す。
-$currentPage = 'message';
-
-// パンくずの表示内容。最後の項目が現在のページになる。
-$breadcrumbs = [
-  ['label' => 'ホーム'],
-  ['label' => 'メッセージ'],
-]; ?>
-
 <!DOCTYPE html>
 <html lang="ja">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="株式会社STARTの代表メッセージです。" />
-    <title>メッセージ｜株式会社START</title>
+    <!-- 学習用サイトのため、検索結果に表示しない。 -->
+    <meta name="robots" content="noindex" />
+    <meta name="description" content="株式会社STARTの代表取締役社長・鈴木 博之からのメッセージです。仕事を楽しむことが人生の豊かさにつながるという考えのもと、人材紹介やWebデザインの学びを通じて、一人ひとりの理想の人生を支援します。" />
+    <title><?= htmlspecialchars($pageTitle = 'メッセージ', ENT_QUOTES, 'UTF-8') ?></title>
     <link rel="icon" href="./asset/img/favicon.png" type="image/png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -32,7 +24,7 @@ $breadcrumbs = [
         <h1 class="page-hero__title">メッセージ</h1>
       </section>
 
-      <!-- パンくずリスト：このファイル冒頭の $breadcrumbs を使ってページ名を表示 -->
+      <!-- パンくずリスト：このページのタイトルからページ名を自動表示する。 -->
       <?php require __DIR__ . '/asset/parts/breadcrumb.php'; ?>
 
       <section class="message-main">

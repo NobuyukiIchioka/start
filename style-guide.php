@@ -1,5 +1,4 @@
 <?php
-$currentPage = 'style-guide';
 // 共通パーツの見本は、このページをiframe内でも使って表示する。
 $requestedPreview = $_GET['preview'] ?? '';
 $preview = is_string($requestedPreview) && in_array($requestedPreview, ['header', 'footer'], true)
@@ -11,8 +10,10 @@ $preview = is_string($requestedPreview) && in_array($requestedPreview, ['header'
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- 内部確認用ページのため、見本表示も含めて検索結果に表示しない。 -->
+    <meta name="robots" content="noindex" />
     <meta name="description" content="株式会社STARTのスタイルガイド確認ページです。" />
-    <title>スタイルガイド | 株式会社START</title>
+    <title><?= htmlspecialchars($pageTitle = 'スタイルガイド | 株式会社START', ENT_QUOTES, 'UTF-8') ?></title>
     <?php if ($preview !== ''): ?>
     <base target="_top" />
     <?php endif; ?>

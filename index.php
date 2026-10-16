@@ -1,13 +1,12 @@
-<?php
-$currentPage = 'home';
-?>
 <!DOCTYPE html>
 <html lang="ja">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="株式会社STARTのコーポレートサイトです。" />
-    <title>株式会社START</title>
+    <!-- 学習用サイトのため、検索結果に表示しない。 -->
+    <meta name="robots" content="noindex" />
+    <meta name="description" content="株式会社STARTは、Web制作人材の紹介、オンラインスクール、Webメディア運営を通じて、一人ひとりの仕事の新しい一歩を応援します。サービス内容や代表メッセージ、会社情報をご紹介します。" />
+    <title><?= htmlspecialchars($pageTitle = '株式会社START｜Web制作の人材紹介・スクール・メディア運営', ENT_QUOTES, 'UTF-8') ?></title>
     <link rel="icon" href="./asset/img/favicon.png" type="image/png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
