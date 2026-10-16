@@ -6,7 +6,7 @@
     <!-- 学習用サイトのため、検索結果に表示しない。 -->
     <meta name="robots" content="noindex" />
     <meta name="description" content="株式会社STARTの会社概要をご紹介します。社名、設立日、代表者、資本金、所在地の基本情報と、アクセスマップ、ニュースを掲載しています。" />
-    <title><?= htmlspecialchars($pageTitle = '会社概要', ENT_QUOTES, 'UTF-8') ?></title>
+    <title>会社概要</title>
     <link rel="icon" href="./asset/img/favicon.png" type="image/png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

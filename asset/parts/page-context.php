@@ -1,6 +1,14 @@
 <?php
-// <title>で設定した文字列全体を、パンくずと現在ページの判定に使う。
-$pageName = trim($pageTitle ?? '');
+// 表示中のページファイルから、通常のHTMLで書かれた <title> の内容を読む。
+$pageFile = $_SERVER['SCRIPT_FILENAME'] ?? '';
+$pageSource = is_file($pageFile) ? file_get_contents($pageFile) : '';
+// コメントアウトされたタイトルの見本などは取得対象にしない。
+$pageSource = preg_replace('/<!--.*?-->/s', '', $pageSource ?: '');
+$pageTitle = '';
+if (preg_match('/<title\b[^>]*>(.*?)<\/title>/is', $pageSource, $pageTitleMatch)) {
+  $pageTitle = html_entity_decode($pageTitleMatch[1], ENT_QUOTES | ENT_HTML5, 'UTF-8');
+}
+$pageName = trim($pageTitle);
 
 // タイトルとヘッダーのナビ項目の対応は、ここでまとめて管理する。
 $navigationPages = [

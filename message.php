@@ -6,7 +6,7 @@
     <!-- 学習用サイトのため、検索結果に表示しない。 -->
     <meta name="robots" content="noindex" />
     <meta name="description" content="株式会社STARTの代表取締役社長・鈴木 博之からのメッセージです。仕事を楽しむことが人生の豊かさにつながるという考えのもと、人材紹介やWebデザインの学びを通じて、一人ひとりの理想の人生を支援します。" />
-    <title><?= htmlspecialchars($pageTitle = 'メッセージ', ENT_QUOTES, 'UTF-8') ?></title>
+    <title>メッセージ</title>
     <link rel="icon" href="./asset/img/favicon.png" type="image/png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

@@ -13,7 +13,7 @@ $preview = is_string($requestedPreview) && in_array($requestedPreview, ['header'
     <!-- 内部確認用ページのため、見本表示も含めて検索結果に表示しない。 -->
     <meta name="robots" content="noindex" />
     <meta name="description" content="株式会社STARTのスタイルガイド確認ページです。" />
-    <title><?= htmlspecialchars($pageTitle = 'スタイルガイド | 株式会社START', ENT_QUOTES, 'UTF-8') ?></title>
+    <title>スタイルガイド | 株式会社START</title>
     <?php if ($preview !== ''): ?>
     <base target="_top" />
     <?php endif; ?>
