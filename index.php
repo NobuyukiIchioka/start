@@ -45,7 +45,7 @@
             <li class="content-card">
               <picture class="content-card__icon">
                 <source media="(max-width: 767px)" srcset="./asset/img/人材紹介業icon-sp.png" />
-                <img class="content-card__icon-image" src="./asset/img/人材紹介業icon-pc.png" alt="" width="96" height="96" />
+                <img class="content-card__icon-image" src="./asset/img/人材紹介業icon-pc.png" alt="人材紹介業" width="96" height="96" />
               </picture>
               <h3 class="content-card__title">人材紹介業</h3>
               <p class="content-card__text">Webサイト制作やリニューアルに対応できる、Web制作人材の紹介を行っています。</p>
@@ -53,7 +53,7 @@
             <li class="content-card">
               <picture class="content-card__icon">
                 <source media="(max-width: 767px)" srcset="./asset/img/スクール事業icon-sp.png" />
-                <img class="content-card__icon-image" src="./asset/img/スクール事業icon-pc.png" alt="" width="96" height="96" />
+                <img class="content-card__icon-image" src="./asset/img/スクール事業icon-pc.png" alt="スクール事業" width="96" height="96" />
               </picture>
               <h3 class="content-card__title">スクール事業</h3>
               <p class="content-card__text">オンラインでWeb制作を学べるスクールを運営しています。</p>
@@ -61,7 +61,7 @@
             <li class="content-card">
               <picture class="content-card__icon">
                 <source media="(max-width: 767px)" srcset="./asset/img/Webメディア運営icon-sp.png" />
-                <img class="content-card__icon-image" src="./asset/img/Webメディア運営icon-pc.png" alt="" width="96" height="96" />
+                <img class="content-card__icon-image" src="./asset/img/Webメディア運営icon-pc.png" alt="Webメディア運営" width="96" height="96" />
               </picture>
               <h3 class="content-card__title">Webメディア運営</h3>
               <p class="content-card__text">人事系メディアやWebデザイン関連のメディアなどを複数運営しています。</p>

@@ -6,7 +6,7 @@ require_once __DIR__ . '/page-context.php';
     <a class="site-logo" href="./index.php">
       <picture>
         <source media="(max-width: 767px)" srcset="./asset/img/logo-sp.png" />
-        <img class="site-logo__image" src="./asset/img/logo-pc.png" alt="START" width="334" height="66" />
+        <img class="site-logo__image" src="./asset/img/logo-pc.png" alt="会社ロゴ" width="334" height="66" />
       </picture>
     </a>
 
