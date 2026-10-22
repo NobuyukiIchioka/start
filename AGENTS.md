@@ -49,7 +49,6 @@ start/
         ├── header.php
         ├── footer.php
         ├── pagetop.php
-        ├── breadcrumb.php
         ├── page-context.php
         ├── news-list.php
         └── study.php
@@ -59,12 +58,12 @@ start/
 
 ## PHPと共通パーツ
 
-- PHPの共通パーツは、ヘッダー、フッター、ニュース一覧、ページTOPボタン、パンくずリスト。ページTOPボタンは2026-10-08の追加依頼で設置し、パンくずは2026-10-13に共通パーツ化した
+- PHPの共通パーツは、ヘッダー、フッター、ニュース一覧、ページTOPボタン。パンくずは2026-10-22のユーザー指定により各ページへのHTML直書きに戻した
 - 共通パーツは `asset/parts/` に置く
 - 各ページからは `require __DIR__ . '/asset/parts/ファイル名.php';` で読み込む
 - `pagetop.php` は `footer.php` の末尾から `require __DIR__ . '/pagetop.php';` で読み込む。各ページから重複して読み込まない。例外として、スタイルガイドの通常表示はページ最下部のフッターを省くため、`pagetop.php` だけを単独で読み込む
 - `head` 要素は共通化せず、各ページに記述する
-- ページ名の管理元は各ページに通常のHTMLで記述する `<title>` にする。タイトル内にPHPの変数設定や出力処理を書かず、冒頭にも `$pageTitle`・`$currentPage`・`$breadcrumbs` を別途記述しない
+- ヘッダーの現在ページ判定に使うページ名の管理元は、各ページに通常のHTMLで記述する `<title>` にする。タイトル内にPHPの変数設定や出力処理を書かず、冒頭にも `$pageTitle`・`$currentPage`・`$breadcrumbs` を別途記述しない。パンくずのページ名は各ページのHTMLに直接記述する
 
 ```html
 <title>メッセージ</title>
@@ -76,11 +75,11 @@ start/
 
 ### パンくずリスト
 
-- 2026-10-16のユーザー指定により、パンくずとヘッダーの現在ページをページタイトルから自動設定する方式へ変更した。従来の各ページの `$breadcrumbs` 配列は使用しない
-- ヒーロー直後で `asset/parts/breadcrumb.php` を読み込む。直前のHTMLコメントには、ページタイトルから表示することを記載する
-- 共通パーツにホームへのリンク（`./index.php`）と矢印のインラインSVGを固定し、その後に `$pageName` をリンクなしの現在ページ（`aria-current="page"`）として表示する。現在の構造は「ホーム → 現在ページ」の2階層で、URLから親階層を推測しない
-- `header.php` と `breadcrumb.php` は `page-context.php` を `require_once` して同じ判定を使う。ページ名は出力時に `htmlspecialchars` でエスケープする。JavaScriptを無効にしても表示・判定できる。ホームページにはパンくずを置かない
-- HTML・SVGの構造は共通PHPパーツ、見た目は `module.css` の `.breadcrumb` 系、ページ名の指定は各ページの `<title>` で管理する
+- 2026-10-22のユーザー指定により、`message.php` と `company.php` のヒーロー直後にパンくずのHTML・SVG・現在ページ名を直接記述する。パンくず用のPHPパーツ・include・`$breadcrumbs` 配列・タイトルからの自動表示は使用しない
+- 「ホーム」（`./index.php`）→ 現在ページの2階層とし、現在ページはリンクなしのテキストに `aria-current="page"` を付ける。区切りは各ページにインラインSVGで記述する
+- JavaScriptを無効にしても表示する。ホームページにはパンくずを置かない。ページ名を変えた場合は、そのページのタイトル・H1・パンくずのテキストを確認する
+- 見た目は引き続き `module.css` の `.breadcrumb` 系で共通管理する。ヘッダーの自動判定用 `page-context.php` は変更せず残す
+- 2026-10-22更新：パンくずにも `.container` を付け、本文と同じ最大幅1110px・左右最小20px・中央配置を使う。`.breadcrumb` は上余白20pxだけを指定し、独自の最大幅や左右paddingを重ねない。
 
 ### 学習用ファイル
 
@@ -165,7 +164,7 @@ start/
 
 - ユーザー指定により、学習用サイトとして公開し、検索結果には表示しない。`index.php`・`message.php`・`company.php` の `head` に `<meta name="robots" content="noindex" />` を記述する
 - 内部確認用の `style-guide.php` にも `noindex` を指定する。通常表示と `?preview=header`／`?preview=footer` のすべてに適用する
-- ページごとの `title` と `meta description` は各PHPの `head` に通常のHTMLで記述し、本文にある情報を使う。`title` の内容は共通PHPがページファイルから取得し、ヘッダー・パンくずと共用する。説明文はトップが3事業、メッセージが代表者の考え、会社概要が掲載する会社情報を説明する。既存の見出し・本文は、この設定で変更しない
+- ページごとの `title` と `meta description` は各PHPの `head` に通常のHTMLで記述し、本文にある情報を使う。`title` の内容は共通PHPがページファイルから取得し、ヘッダーの現在ページ判定に使う。パンくずのページ名は各ページに直書きする。説明文はトップが3事業、メッセージが代表者の考え、会社概要が掲載する会社情報を説明する。既存の見出し・本文は、この設定で変更しない
 - `noindex` を検索エンジンが読み取れるよう、`robots.txt` でサイト全体のクロールを禁止する設定は追加しない。`noindex` は閲覧を制限する機能ではない
 - 公開URLは未確認。仮ドメインやアクセス時のホスト名から `canonical`・サイトマップ・構造化データのURLを生成しない。検索結果に掲載する方針へ変更する場合は、`noindex` の解除とともに公開URLを確認して正規URL・サイトマップ等を設定する
 
@@ -303,7 +302,7 @@ PHPのincludeはHTMLファイルの直接表示では動作しない。MAMPな�
 - `.site-header` は `position: fixed; top: 0; left: 0; width: 100%; z-index: 20`。高さは `--site-header-height`（PC 90px／SP 60px）を使用する。
 - `body` の `padding-top` に同じ変数を指定し、固定ヘッダーが本文に重ならないようにする。`html` の `scroll-padding-top` はヘッダー高＋20px。
 - `message.php` と `company.php` のヒーロー直後にパンくずを追加。ホームへのリンクと現在ページ名を表示し、現在ページに `aria-current="page"` を付ける。ホームページには置かない。
-- 2026-10-16更新：パンくずのHTML・SVGとホームへのリンクは `asset/parts/breadcrumb.php`、現在ページ名は `<title>` から `page-context.php` が取得し、CSSは `module.css` の `.breadcrumb` 系。最大幅960px、paddingは上20px・左右40px・下0、文字13px、行高1.6、項目間隔10px。メッセージ本文の上余白はPC 80px、SP 40px。
+- 2026-10-22更新：パンくずのHTML・SVG・現在ページ名は `message.php` と `company.php` に直書きし、不要になった `asset/parts/breadcrumb.php` は削除。CSSは `module.css` の `.breadcrumb` 系。幅・左右余白は共通の `.container`（最大1110px・左右最小20px）に統一し、従来の最大幅960px・左右padding40pxは廃止。上padding20px、文字13px、行高1.6、項目間隔10pxは維持。メッセージ本文の上余白はPC 80px、SP 40px。
 
 ### ページTOPボタン
 
@@ -334,7 +333,7 @@ PHPのincludeはHTMLファイルの直接表示では動作しない。MAMPな�
 
 ### ページタイトル・ヘッダー・パンくず
 
-- ページ名の指定は通常のHTMLの `<title>` に集約する。共通PHPがページファイルからその文字列を取得し、ヘッダーとパンくずでも使う。タイトル内やページ冒頭に、ページ名を渡すための変数設定を書かない。
+- ヘッダーの判定用ページ名の指定は通常のHTMLの `<title>` に集約する。共通PHPがページファイルからその文字列を取得する。タイトル内やページ冒頭に、ページ名を渡すための変数設定を書かない。パンくずは2026-10-22の指示を優先し、各ページへ直書きする。
 - 下層ページの現在のタイトルは「メッセージ」「会社概要」。ユーザーが削除した「｜株式会社START」を付け直さず、会社名・区切り文字を取り除く処理も追加しない。`page-context.php` はタイトル全文を使い、前後の空白だけを除く。
 - `<title>` は次のように通常のHTMLで記述する。以前の `htmlspecialchars($pageTitle = ...)` をタイトル内に書く方式は使用しない。
 
@@ -343,10 +342,9 @@ PHPのincludeはHTMLファイルの直接表示では動作しない。MAMPな�
 ```
 
 - `asset/parts/page-context.php` がページ名とヘッダーの現在ページを判定する。ナビとの対応は共通の `$navigationPages` で管理し、タイトルを変更・追加した際は、この対応表も確認する。未登録のタイトルを、推測で別のナビ項目へ割り当てない。
-- `header.php` と `breadcrumb.php` は上記ファイルを `require_once` する。PHPで完成したHTMLを出力し、JavaScriptを無効にしてもパンくずとPC・SPナビの現在ページ表示が機能する。
-- パンくずはヒーロー直後に読み込む。読み込み位置のコメントには、ページタイトルからページ名を表示することを書く。
-- 「ホーム」とリンク先 `./index.php`、区切りのSVGは `breadcrumb.php` に固定する。現在ページはタイトルから取得し、リンクなしで `aria-current="page"` を付ける。現在は「ホーム → 現在ページ」の2階層で、ホームページ自体にはパンくずを置かない。
-- 矢印は共通パーツ内のインラインSVGで、画像フォルダのSVGファイルを参照していない。各ページへSVGを重複して書かない。見た目は `module.css` の `.breadcrumb` 系で管理する。
+- `header.php` は上記ファイルを `require_once` する。PHPで完成したHTMLを出力し、JavaScriptを無効にしてもPC・SPナビの現在ページ表示が機能する。
+- パンくずは各下層ページのヒーロー直後にHTMLで直書きする。「ホーム」とリンク先 `./index.php`、区切りのインラインSVG、リンクなしの現在ページ名（`aria-current="page"`）も各ページに記述する。ホームページ自体には置かない。
+- 見た目は `module.css` の `.breadcrumb` 系で管理する。各ページのnavに必ず `breadcrumb container` を付け、最大1110px・左右最小20pxで本文に揃える。
 
 ### 公開方針とSEO
 

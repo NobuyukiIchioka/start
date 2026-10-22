@@ -271,10 +271,8 @@ body.is-menu-open {
 
 /* Breadcrumb（下層ページのパンくずリスト） */
 .breadcrumb {
-  max-width: 960px;
-  margin: 0 auto;
-  padding: 20px 40px 0;
-  box-sizing: border-box;
+  /* 幅・左右余白・中央配置は共通の .container を使う。 */
+  padding-top: 20px;
 }
 
 .breadcrumb__list {

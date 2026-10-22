@@ -24,8 +24,17 @@
         <h1 class="page-hero__title">会社概要</h1>
       </section>
 
-      <!-- パンくずリスト：このページのタイトルからページ名を自動表示する。 -->
-      <?php require __DIR__ . '/asset/parts/breadcrumb.php'; ?>
+      <nav class="breadcrumb container" aria-label="パンくずリスト">
+        <ol class="breadcrumb__list">
+          <li class="breadcrumb__item">
+            <a class="breadcrumb__link" href="./index.php">ホーム</a>
+            <svg class="breadcrumb__sep" viewBox="0 0 8 8" aria-hidden="true">
+              <path d="M2.5 1l3 3-3 3" />
+            </svg>
+          </li>
+          <li class="breadcrumb__item breadcrumb__item--current" aria-current="page">会社概要</li>
+        </ol>
+      </nav>
 
       <div class="company-main">
         <div class="container">
